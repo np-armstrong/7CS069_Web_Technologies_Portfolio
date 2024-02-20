@@ -9,15 +9,15 @@ function Navigation() {
   return (
     <>
       {['lg'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
+        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-0">
           <Container fluid>
         {/* <div>
             <img src="/assets/moto-40.png" alt="" href="/" style={{ cursor: 'pointer' }} />
         </div> */}
         <div style={{ marginLeft: '10px' }}>
             <Navbar.Brand href="#">
-                <img src="/assets/moto-40.png" alt="" href="/" style={{ cursor: 'pointer', marginRight: "10px"}} />
-                RideOn
+                <img src="/assets/rideon.png" alt="" href="/" style={{ cursor: 'pointer', height:"40px", marginRight: "10px"}} />
+                {/* RideOn */}
             </Navbar.Brand>
         </div>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
