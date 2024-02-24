@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link } from 'react-router-dom';
 
 function Navigation() {
   return (
@@ -51,9 +52,9 @@ function Navigation() {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
-                <Button variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Register</Button>
+                <Button as={Link} to="/register" variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Register</Button>
                 <NavDropdown.Divider />
-                <Button variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button>
+                <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

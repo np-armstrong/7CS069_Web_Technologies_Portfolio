@@ -19,6 +19,11 @@ const Hero = () => {
                                 <h4 className='subheading'>Find the perfect bike for your next journey, hassle-free rentals from riders, for riders.</h4>
                             </div>
                         </div>
+
+                        {/* <div className="searchBar">
+                            <input type="text" className="searchInput" placeholder="Search for your next ride" />
+                            <button className="searchButton">Search</button>
+                        </div> */}
                         
                 </div>
         </>
