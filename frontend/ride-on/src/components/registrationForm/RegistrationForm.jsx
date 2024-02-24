@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './registrationForm.css'; // Add correct import statement for CSS file
+import { Link } from 'react-router-dom'; 
 
 const RegistrationForm = () => {
 
@@ -59,7 +60,11 @@ const handleCheckboxChange = (event) => {
         <Button variant="dark" type="submit">
             Sign Up!
         </Button>
+        <hr />
+        <p>Already a member?</p> 
+        <a href="/login">Login</a>
         </Form>
+        
     </div> 
     </>
   )

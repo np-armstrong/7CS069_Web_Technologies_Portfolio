@@ -7,6 +7,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
 function Navigation() {
+
+  let isLoggedIn = true; 
+
   return (
     <>
       {['lg'].map((expand) => (
@@ -36,25 +39,35 @@ function Navigation() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   {/* <Nav.Link href="#action1">Home</Nav.Link>
                   <Nav.Link href="#action2">Link</Nav.Link> */}
-                  <NavDropdown
-                    style={{ marginBottom: '5px' }}
-                    title="Profile"
-                    id={`offcanvasNavbarDropdown-expand-${expand}`}
-                    // margin-right="100px"
-                  >
-                    <NavDropdown.Item href="#action3">Edit</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">
-                      My Bookings
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                  {isLoggedIn ? (
+                    <NavDropdown
+                      style={{ marginBottom: '5px' }}
+                      title="Profile"
+                      id={`offcanvasNavbarDropdown-expand-${expand}`}
+                    >
+                      <NavDropdown.Item href="#action4">
+                        My Bookings
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="#action5">
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  ) : (
+                    <NavDropdown
+                      style={{ marginBottom: '5px' }}
+                      title="Profile"
+                      id={`offcanvasNavbarDropdown-expand-${expand}`}
+                    >
+                      <NavDropdown.Item href="/login">
+                        Login
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  )}
                 </Nav>
                 <Button as={Link} to="/register" variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Register</Button>
                 <NavDropdown.Divider />
-                <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button>
+                {/* <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button> */}
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
