@@ -11,12 +11,13 @@ class booking extends Model
 
     protected $fillable = [
         'username',
-        'bike_id',
+        'make',
+        'model',
         'start_date',
         'end_date',
     ];
 
-    // Define the relationship between the Booking and the Bike model
+    // Define the relationship between the Booking and the user model
     public function user()
     {
         return $this->belongsTo(User::class);
