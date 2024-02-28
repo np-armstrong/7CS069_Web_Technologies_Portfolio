@@ -3,6 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import BikeCard from '../bikeCard/BikeCard';
 import './fleet.css';
 
+//TODO: Create a modal that allows user to book a bike
+
 const Fleet = () => {
   return (
     <Container className='fleet-container'>

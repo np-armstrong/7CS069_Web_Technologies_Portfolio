@@ -28,11 +28,11 @@ function BikeCard(props) {
             <div className="stats-container">
                 <div className='bike-stats'>
                   <img src="./assets/icons/engine.png"/>
-                  <li className='bike-stat'>{`${props.engine}cc`}</li>
+                  <li className='bike-stat'>{`${props.engine} cc`}</li>
                 </div>
                 <div className='bike-stats'>
                   <img src="./assets/icons/gearbox-64.png"/>
-                  <li className='bike-stat'>{`${props.transmission}cc`}</li>
+                  <li className='bike-stat'>{props.transmission}</li>
                 </div>
                 <div className='bike-stats'>
                   <img src="./assets/icons/dollar.png"/>

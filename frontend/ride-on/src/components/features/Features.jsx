@@ -5,18 +5,24 @@ import {Bandaid, Calendar2Heart, ChatDots } from 'react-bootstrap-icons'
 
 function Features(){
   return (
-    <Container className='feature-container'>
+    <Container fluid className='feature-container'>
       <Row>
         <Col xs={12} md={4}>
-          <Bandaid className="feature-icon" />
+          <div className="feature-icon"> 
+            <Bandaid size={60}/>
+          </div>
           <h4 className="feature-description">Fully Insured</h4>
         </Col>
         <Col xs={12} md={4}>
-          <Calendar2Heart className="feature-icon" />
+          <div className="feature-icon">
+            <Calendar2Heart size={60}/>
+          </div>
           <h4 className="feature-description">Flexible Bookings</h4>
         </Col>
         <Col xs={12} md={4}>
-          <ChatDots className="feature-icon" />
+          <div className="feature-icon">
+            <ChatDots size={60}/>
+          </div>
           <h4 className="feature-description">24/7 Support</h4>
         </Col>
       </Row>

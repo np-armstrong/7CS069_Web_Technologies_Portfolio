@@ -6,14 +6,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
-function Navigation() {
+function Navigation(props) {
 
   let isLoggedIn = true; 
+  let isBookings = props.isBookings;
+
+  if (isBookings) {
+    console.log("Bookings True");
+  }
 
   return (
     <>
       {['lg'].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-0">
+        <Navbar fixed="top" key={expand} expand={expand} className="bg-body-tertiary mb-0">
           <Container fluid>
         {/* <div>
             <img src="/assets/moto-40.png" alt="" href="/" style={{ cursor: 'pointer' }} />
@@ -65,7 +70,21 @@ function Navigation() {
                     </NavDropdown>
                   )}
                 </Nav>
-                <Button as={Link} to={isLoggedIn ? "/bookings" : "/register"} variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Manage Bookings</Button>
+                {isBookings ? 
+                (<Button 
+                  as={Link} 
+                  to={"/"} 
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  Home
+                </Button>
+                ) : (<Button 
+                  as={Link} 
+                  to={isLoggedIn ? "/bookings" : "/register"} 
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  Manage Bookings
+                </Button>)}
                 <NavDropdown.Divider />
                 {/* <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button> */}
               </Offcanvas.Body>

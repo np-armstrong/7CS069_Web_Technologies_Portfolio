@@ -8,7 +8,7 @@ import Footer from '../../components/footer/Footer';
 const HomePage = () => {
   return (
     <>
-        <Navigation />
+        <Navigation isBookings={false}/>
         <Hero/> 
         <Fleet />
         <Features />
