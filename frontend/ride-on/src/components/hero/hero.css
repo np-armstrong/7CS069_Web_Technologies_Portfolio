@@ -55,6 +55,7 @@
     position: absolute;
     top: 40%;
     left: 50%;
+    width: 70vw;
     transform: translate(-50%, -50%);
     /* background-color: rgba(219, 219, 219, 0.3); */
     border-radius: 20px;
@@ -66,7 +67,7 @@
 }
 
 .heading{
-    font-size: 50px;
+    /* font-size: 50px; */
     font-weight: bold;
     color: white;
     text-align: centre;
@@ -78,7 +79,7 @@
 }
 
 .subheading{
-    font-size: 30px;
+    /* font-size: 30px; */
     font-weight: bold;
     color: white;
     text-align: center;

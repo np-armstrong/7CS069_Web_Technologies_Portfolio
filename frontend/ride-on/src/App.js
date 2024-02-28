@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 
 
-import Listings from './pages/listings/Listings.jsx';
 import Bike from './pages/bike/Bike.jsx';
 import HomePage from './pages/homePage/HomePage.jsx';
 import Register from './pages/register/Register.jsx';
@@ -21,8 +20,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage/>} />
-        <Route path="/listings" element={<Listings/>} />
-        <Route path="/listings/:id" element={<Bike/>} />
         <Route path="/register" element={<Register />}/>
         <Route path="/login" element={<Login />}/> 
         <Route path="/Bookings" element={<Bookings />}/> 

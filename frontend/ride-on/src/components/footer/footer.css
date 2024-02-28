@@ -1,0 +1,33 @@
+.footer-container {
+    margin-top: 100px;
+    padding-top: 50px;
+    background-color: #FF5733;
+    margin-bottom: 0;
+}
+
+.column{
+    margin-top: 20px;
+}
+
+.copyright {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+
+
+}
+
+.footer-container h4 {
+    color: white;
+}
+
+.column li{
+    list-style-type: none;
+    color: white;
+}
+
+.column a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}

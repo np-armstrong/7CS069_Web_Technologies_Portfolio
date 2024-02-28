@@ -1,0 +1,10 @@
+.feature-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.feature-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

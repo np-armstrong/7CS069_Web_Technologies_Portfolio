@@ -1,0 +1,29 @@
+.bike-card{
+    margin-bottom: 20px;
+}
+
+.stats-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.bike-stats{
+    display: flex;
+    padding: auto;
+}
+
+.bike-stat{
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.bike-stats img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+
+}
+
+bike-features{
+    margin: 0;
+}

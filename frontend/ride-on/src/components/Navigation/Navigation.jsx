@@ -46,7 +46,7 @@ function Navigation() {
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
                       <NavDropdown.Item href="#action4">
-                        My Bookings
+                        My Profile
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="#action5">
@@ -65,7 +65,7 @@ function Navigation() {
                     </NavDropdown>
                   )}
                 </Nav>
-                <Button as={Link} to="/register" variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Register</Button>
+                <Button as={Link} to={isLoggedIn ? "/bookings" : "/register"} variant="dark" style={{ marginRight: '10px', marginBottom: "5px"}}>Manage Bookings</Button>
                 <NavDropdown.Divider />
                 {/* <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button> */}
               </Offcanvas.Body>

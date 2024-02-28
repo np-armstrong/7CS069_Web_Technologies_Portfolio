@@ -1,27 +1,49 @@
 import React from 'react'
-import './BikeCard.css'
+import './bikeCard.css'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { CurrencyDollar } from 'react-bootstrap-icons';
+import { Router } from 'react-router-dom';
 
-const BikeCard = (props) => {
-  return (
-    <>
-        <div className="bikeCard">
-            <div className="bikeCardContainer">
-                <img src={props.image} alt={`Image of a ${props.make} ${props.model}`} />
-                <div className="bikeTitle">
-                    <h3>{props.make}</h3>
-                    <h3>{props.model}</h3>
-                </div>
-                <div className="bikeDetails">
-                    <p>{`${props.engine} cc`}</p>
-                    <p>{props.transmission}</p>
-                </div>
-                <div className="bikeDayRate">
-                    <h3>{`$${props.dayRate}`}</h3>
-                </div>
-            </div>
-        </div>
-    </>
-  )
-}
+function BikeCard(props) {
 
-export default BikeCard
+  const make = props.make;
+  const model = props.model;
+  const engine = props.engine;
+  const transmission = props.transmission;
+  const dayRate = props.dayRate;
+  const image = props.url;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log('The link was clicked.');
+  }
+  
+    return (
+      <div className='bike-card'>
+        <Card style={{ width: '18rem' }}>
+          <Card.Img variant="top" src={props.url} />
+          <Card.Body>
+            <Card.Title>{`${props.make} ${props.model}`}</Card.Title>
+            <div className="stats-container">
+                <div className='bike-stats'>
+                  <img src="./assets/icons/engine.png"/>
+                  <li className='bike-stat'>{`${props.engine}cc`}</li>
+                </div>
+                <div className='bike-stats'>
+                  <img src="./assets/icons/gearbox-64.png"/>
+                  <li className='bike-stat'>{`${props.transmission}cc`}</li>
+                </div>
+                <div className='bike-stats'>
+                  <img src="./assets/icons/dollar.png"/>
+                  <li className='bike-stat'>{`$${props.dayRate}/day`}</li>
+              </div>
+            </div>          
+            <Button variant="dark" onClick={handleClick}>Hire</Button>
+          </Card.Body>
+        </Card>
+      </div>
+    );
+  }
+  
+  export default BikeCard;
