@@ -1,6 +1,7 @@
 .header{
     margin-top: 10vh;
 }
+
 .booking-container{
     margin-top: 10px;
     align-items: center;
@@ -22,8 +23,10 @@
 }
 
 .img-container img{
-    width: 100px;
-    height: 100px;
+    /* width: 100px;
+    height: 100px; */
+    width: 90%;
+    max-width: 200px;
     border-radius: 50%;
     border-color: black;
     border-style: solid;
