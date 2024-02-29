@@ -14,7 +14,7 @@ import { useState } from 'react';
 let todaysDate = new Date(Date.now());
 let newStartDate = new Date();
 let newEndDate = new Date();
-
+ 
 function EditModal(props) {
 
     function handleClick() {
