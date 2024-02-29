@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import BikeCard from '../bikeCard/BikeCard';
 import './fleet.css';
 
+//FIRST TODO: Turn the below into a map that will iterate through the bikes in the database and display them
 //TODO: Create a modal that allows user to book a bike
 
 const Fleet = () => {

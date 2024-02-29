@@ -11,10 +11,6 @@ function Navigation(props) {
   let isLoggedIn = true; 
   let isBookings = props.isBookings;
 
-  if (isBookings) {
-    console.log("Bookings True");
-  }
-
   return (
     <>
       {['lg'].map((expand) => (
