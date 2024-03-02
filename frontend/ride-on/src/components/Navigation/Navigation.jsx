@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 
 function Navigation(props) {
 
-  let isLoggedIn = true; 
+  let isLoggedIn = true; //Change to state variable later
   let isBookings = props.isBookings;
-
+  
   return (
     <>
       {['lg'].map((expand) => (
@@ -20,7 +20,7 @@ function Navigation(props) {
             <img src="/assets/moto-40.png" alt="" href="/" style={{ cursor: 'pointer' }} />
         </div> */}
         <div style={{ marginLeft: '10px' }}>
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="/">
                 <img src="/assets/rideon.png" alt="" href="/" style={{ cursor: 'pointer', height:"40px", marginRight: "10px"}} />
                 {/* RideOn */}
             </Navbar.Brand>

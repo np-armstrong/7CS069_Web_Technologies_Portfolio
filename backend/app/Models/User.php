@@ -30,7 +30,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token', //A remember token is used to identify a user between sessions
     ];
 
     /**
