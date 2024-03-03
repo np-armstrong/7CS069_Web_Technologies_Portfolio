@@ -13,6 +13,7 @@ function BikeCard(props) {
   const transmission = props.transmission;
   const dayRate = props.dayRate;
   const image = props.url;
+  const key = props.key;
 
   const handleClick = (e) => {
     e.preventDefault();

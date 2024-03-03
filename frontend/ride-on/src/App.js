@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 
-import Bike from './pages/bike/Bike.jsx';
+// import Bike from './pages/bike/Bike.jsx';
 import HomePage from './pages/homePage/HomePage.jsx';
 import Register from './pages/register/Register.jsx';
 import Login from './pages/login/Login.jsx';
