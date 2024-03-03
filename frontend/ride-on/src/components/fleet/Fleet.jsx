@@ -39,8 +39,8 @@ const Fleet = () => {
         <hr/>
       <Row>
         {bikes[0] != null ? bikes[0].map((bike, index) => {
-          return (
-            <Col>
+          return (  
+            <Col key={index}>
               <BikeCard 
               key={index}
               make={bike.make}
@@ -50,7 +50,7 @@ const Fleet = () => {
               url={bike.image_url}
               dayRate={bike.day_rate}
               />
-            </Col>
+            </Col>    
           )
         
         }) : 

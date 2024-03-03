@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { CurrencyDollar } from 'react-bootstrap-icons';
 import { Router } from 'react-router-dom';
+import CreateModal from '../createModal/CreateModal';
 
 function BikeCard(props) {
 
@@ -13,7 +14,7 @@ function BikeCard(props) {
   const transmission = props.transmission;
   const dayRate = props.dayRate;
   const image = props.url;
-  const key = props.key;
+  // const key = props.key;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -40,7 +41,15 @@ function BikeCard(props) {
                   <li className='bike-stat'>{`$${props.dayRate}/day`}</li>
               </div>
             </div>          
-            <Button variant="dark" onClick={handleClick}>Hire</Button>
+            {/* <Button variant="dark" onClick={handleClick}>Hire</Button> */}
+            <CreateModal
+              make={make}
+              model={model}
+              engine={engine}
+              transmission={transmission}
+              dayRate={dayRate}
+              image={image}
+            />          
           </Card.Body>
         </Card>
       </div>

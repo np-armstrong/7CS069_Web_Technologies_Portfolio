@@ -4,6 +4,7 @@ import { Container, Button } from 'react-bootstrap'
 import './bookings.css'
 import EditModal from '../../components/editModal/EditModal'
 
+
 function Bookings() {
 
   //The below will be used to create dummy bookings to use in the map function
@@ -104,7 +105,8 @@ function Bookings() {
             )
           })}      
         </div>
-      </Container>   
+      </Container> 
+
     </>
   )
 }
