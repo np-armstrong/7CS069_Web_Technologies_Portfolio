@@ -36,6 +36,8 @@ function CreateModal(props) {
     let startDate = '2024-03-08';//newStartDate; //Inputs unhooked at the moment while getting post request working
     let endDate = '2024-03-10'; //newEndDate;
     const dayRate = props.dayRate;
+    const image = props.image;
+    let total = 0;
 
 
     //!! POST REQUEST WORKED, BUT NEED TO GET THE DATA FROM THE INPUTS !!
@@ -45,9 +47,14 @@ function CreateModal(props) {
         model: model,
         start_date: startDate, 
         end_date: endDate,    
-        day_rate: dayRate
+        day_rate: dayRate,
+        image_url: image,
+        total_cost: total
     }); //This will hold the data from the POST request [NOT WORKING YET
     
+    //!! Need to find the Total function and add it here !!
+
+    //!! Need to display error messages to the user if the POST request fails !!
     //POST request to create a booking
     async function postData(url, data) {
         try {
@@ -99,6 +106,7 @@ function CreateModal(props) {
 
     //Handle the save button
     function handleSave() {
+        setData(); //!! This updates the data in theory
         postData('/api/bookings/', data)
         .then(responseData => {
             console.log('Successfully sent data: ', responseData);

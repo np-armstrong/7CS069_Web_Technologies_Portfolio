@@ -15,7 +15,9 @@ class booking extends Model
         'model',
         'start_date',
         'end_date',
-        'day_rate'  //Using denormalisation to 
+        'day_rate',
+        'image_url',
+        'total'     //Using denormalisation to 
                     //store the day_rate/username/make/model 
                     //at the time of booking - The duplication of data, 
                     //requires no join to the bikes/user table when 

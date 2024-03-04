@@ -8,28 +8,6 @@ import Spinner from 'react-bootstrap/Spinner'
 
 function Bookings() {
 
-  //The below will be used to create dummy bookings to use in the map function
-  const [bookingDetails, setBookingDetails] = useState([
-    {
-      'id': 1,
-      'make': 'Honda',
-      'model': 'CBR 1000RR',
-      'start_date': "2024-03-01", //Dates updated with the correct format
-      'end_date': "2024-03-02",
-      'image': "https://frasermotorcycles.com.au/cdn/shop/products/HONDA_CBR1000RR-R_SP_2022_2_1200x.png?v=1651111375",
-      'day_rate': 100
-    },
-    {
-      'id': 2,
-      'make': 'Honda',
-      'model': 'Zoomer X',
-      'start_date': "2024-03-05",
-      'end_date': "2024-03-08",
-      'image': "https://www.ncxhonda.com/motorcycles/storage/app/uploads/360/zoomer-x/009.jpg",
-      'day_rate': 25
-    },
-  ]);
-  
   const[bookings, setBookings] = useState([]) //!! This will be used to store the bookings from the backend
 
   //!! GET Bookings from the backend
@@ -57,7 +35,7 @@ function Bookings() {
           <h1>My Bookings</h1>
           <hr/>
         </div>
-
+        {/* !! If there are no bookings, create a way to tell the user there are no bookings */}
         <div className='booking-map'>
           {bookings[0] != null ? bookings[0].map((booking, index) => {
             return (
@@ -68,8 +46,9 @@ function Bookings() {
                 model={booking.model}
                 startDate={booking.start_date}
                 endDate={booking.end_date}
-                image={booking.image}
+                image={booking.image_url}
                 dayRate={booking.day_rate}
+                total={booking.total}
               />
             )
           }) : 
