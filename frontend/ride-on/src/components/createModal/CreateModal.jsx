@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col, Form, Container } from 'react-bootstrap';
 import './createModal.css';
 
+const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
 function CreateModal(props) {
-    const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
     const [show, setShow] = useState(false);
 
@@ -22,8 +22,8 @@ function CreateModal(props) {
     const[validated, setValidated] = useState();
     const[validatedEnd, setValidatedEnd] = useState();
     //Dates
-    const[newStartDate, setNewStartDate] = useState(todaysDate);
-    const[newEndDate, setNewEndDate] = useState(todaysDate);
+    const[newStartDate, setNewStartDate] = useState();
+    const[newEndDate, setNewEndDate] = useState();
     //Cost
     const[totalCost, setTotalCost] = useState(0);
     //Saved
@@ -33,28 +33,58 @@ function CreateModal(props) {
     const username = 'user 2'; //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
-    let startDate = '2024-03-08';//newStartDate; //Inputs unhooked at the moment while getting post request working
-    let endDate = '2024-03-10'; //newEndDate;
     const dayRate = props.dayRate;
     const image = props.image;
-    let total = 0;
 
 
-    //!! POST REQUEST WORKED, BUT NEED TO GET THE DATA FROM THE INPUTS !!
+    //Use effect to update the data when the start date changes
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            start_date: newStartDate
+        }));
+    }, [newStartDate]);
+
+    //Use effect to update the data when the end date changes
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            end_date: newEndDate
+        }));
+        }, [newEndDate]);
+
+    //useEffect used to validate the start date
+    useEffect(() => {
+        if(newStartDate >= todaysDate){
+            setValidated(true);
+        } else {
+            setValidated(false);
+        }
+    }, [newStartDate]);
+
+    //useEffect used to validate the end date
+    useEffect(() => {
+        if(newEndDate > newStartDate){
+            setValidatedEnd(true);
+        } else {
+            setValidatedEnd(false);
+        }
+    }, [newEndDate]);
+
+    //Sets the data for the POST request
     const[data, setData] = useState({
         username: username,
         make: make,
         model: model,
-        start_date: startDate, 
-        end_date: endDate,    
+        start_date: newStartDate, 
+        end_date: newEndDate,    
         day_rate: dayRate,
         image_url: image,
-        total_cost: total
-    }); //This will hold the data from the POST request [NOT WORKING YET
+        total: totalCost
+    }); 
     
     //!! Need to find the Total function and add it here !!
 
-    //!! Need to display error messages to the user if the POST request fails !!
     //POST request to create a booking
     async function postData(url, data) {
         try {
@@ -69,52 +99,31 @@ function CreateModal(props) {
           }
       
           const responseJson = await response.json();
-          return responseJson; // Handle successful response
+          return responseJson; // Returns the new booking object
+          
         } catch (error) {
           console.error('Error:', error);
-          // Handle errors (e.g., display an error message to the user)
+          alert('Error creating booking:', error);
         }
-    }
-    
-
-    //!!VALIDATION IS NOT WORKING PROPERLY!!
-    //Handle the change of the start date
-    const handleStartDateChange = (e) => {
-        setNewStartDate(e.target.value);
-        console.log(`Todays date: ${todaysDate}`)
-        //Validate the inputted dates
-        if(newStartDate <= todaysDate){
-            console.log(`Start date: ${newStartDate}`);
-            setValidated(false); //If the date is in the past, set the validated state variable to false
-        } else {
-            console.log(`Start date: ${newStartDate}`);
-            setValidated(true); //If the date is in the future, set the validated state variable to true
-        }
-    }
-
-    const handleEndDateChange = (e) => {
-        setNewEndDate(e.target.value);
-        console.log(`End date: ${newEndDate}`);
-    
-        //Validate the inputted dates
-        if(newEndDate <= newStartDate){
-            setValidatedEnd(false); //If the date is before the start date, set the validated state variable to false
-        } else {
-            setValidatedEnd(true); //If the date is after the start date, set the validated state variable to true
-        }
+        
     }
 
     //Handle the save button
     function handleSave() {
-        setData(); //!! This updates the data in theory
+        if(validated && validatedEnd){
         postData('/api/bookings/', data)
         .then(responseData => {
             console.log('Successfully sent data: ', responseData);
         })
         .catch(error => {
             console.error('Error:', error);
+            alert('Error creating booking:', error);
         });
+        // console.log(JSON.stringify(data));
         setSaved(!saved);
+        }else{
+            alert('Please enter valid dates');
+        }
     }
 
   return (
@@ -149,9 +158,6 @@ function CreateModal(props) {
                         <img src="./assets/icons/dollar.png"/>
                         <p>{`$${props.dayRate}/day`}</p>
                     </div>
-                    {/* <p>{`Engine: ${props.engine} cc`}</p>
-                    <p>{`Transmission: ${props.transmission}`}</p>
-                    <p>{`Day Rate: $${props.dayRate}/day`}</p> */}
                 </div>
             </div>
 
@@ -164,8 +170,8 @@ function CreateModal(props) {
                         <Form.Control
                             required
                             type="date"
-                            defaultValue={props.startDate} 
-                            onChange={handleStartDateChange}
+                            defaultValue={todaysDate} 
+                            onChange={(e) => setNewStartDate(e.target.value)}
                             isInvalid={validated === false}
                             isValid={validated === true}
                         />
@@ -181,12 +187,12 @@ function CreateModal(props) {
                         <Form.Control
                             required
                             type="date"
-                            defaultValue={props.endDate} 
-                            onChange={handleEndDateChange}
+                            defaultValue={todaysDate} 
+                            onChange={(e) => setNewEndDate(e.target.value)} 
                             isInvalid={validatedEnd === false}
                             isValid={validatedEnd === true}
                         />
-                        <Form.Control.Feedback type='invalid'>Date cannot be before the start date.</Form.Control.Feedback>
+                        <Form.Control.Feedback type='invalid'>Date cannot be before or on the start date.</Form.Control.Feedback>
                         <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                 </Form>
@@ -194,7 +200,7 @@ function CreateModal(props) {
             </div>
 
             <div className="total-cost">
-                <h5>Total Cost: $100</h5>
+                <h5>Total Cost: ${totalCost}</h5>
             </div>
         </div>
         </Modal.Body> : 

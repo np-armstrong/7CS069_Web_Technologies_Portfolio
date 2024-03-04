@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 // A PUT request will be sent to the backend to update the booking details
 
 //Gets the current date to validate the inputted dates
-let todaysDate = new Date(Date.now());
+let todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 let newStartDate = new Date();
 let newEndDate = new Date();
 
@@ -33,7 +33,8 @@ function EditModal(props) {
     //Function to grab the data inputted in the start date field
     const handleStartDateChange = (e) => {
 
-        let newStartDate = new Date(e.target.value);
+        let newStartDate = e.target.value;
+        console.log(newStartDate);
 
         //Validate the inputted dates
         if(newStartDate <= todaysDate){
