@@ -30,7 +30,7 @@ function CreateModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    const username = 'user 1'; //This will be changed to the logged in user's username
+    const username = 'user 2'; //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     let startDate = '2024-03-08';//newStartDate; //Inputs unhooked at the moment while getting post request working
@@ -40,12 +40,12 @@ function CreateModal(props) {
 
     //!! POST REQUEST WORKED, BUT NEED TO GET THE DATA FROM THE INPUTS !!
     const[data, setData] = useState({
-        username: 'user1',
-        make: 'Honda',
-        model: 'Dream',
-        start_date: '2024-03-08', 
-        end_date: '2024-03-10',    
-        day_rate: 30
+        username: username,
+        make: make,
+        model: model,
+        start_date: startDate, 
+        end_date: endDate,    
+        day_rate: dayRate
     }); //This will hold the data from the POST request [NOT WORKING YET
     
     //POST request to create a booking
@@ -67,7 +67,7 @@ function CreateModal(props) {
           console.error('Error:', error);
           // Handle errors (e.g., display an error message to the user)
         }
-      }
+    }
     
 
     //!!VALIDATION IS NOT WORKING PROPERLY!!
