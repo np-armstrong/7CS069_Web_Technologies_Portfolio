@@ -84,6 +84,28 @@ function CreateModal(props) {
     }); 
     
     //!! Need to find the Total function and add it here !!
+    //Function to calculate the total cost of the booking -- This appears to work fine, test with jest!
+    function calculateTotalCost(startDate, endDate, dayRate){
+
+            //Convert the dates to a date object
+        const date1 = new Date(startDate).getDate(); 
+        const date2 = new Date(endDate).getDate();
+            
+        const total = (date2 - date1) * dayRate;
+        
+        return total; 
+    }
+
+    useEffect(() => {
+        setTotalCost(calculateTotalCost(newStartDate, newEndDate, dayRate));
+    }, [newStartDate, newEndDate]);
+
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            total: totalCost
+        }));
+    }, [totalCost]);
 
     //POST request to create a booking
     async function postData(url, data) {
@@ -200,7 +222,7 @@ function CreateModal(props) {
             </div>
 
             <div className="total-cost">
-                <h5>Total Cost: ${totalCost}</h5>
+                {validated && validatedEnd ? <h5>Total Cost: ${totalCost}</h5> : <h5>Total Cost: $0</h5>}
             </div>
         </div>
         </Modal.Body> : 
