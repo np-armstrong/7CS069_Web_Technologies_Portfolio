@@ -1,8 +1,4 @@
-.header{
-    margin-top: 10vh;
-}
-
-/* .booking-container{
+.booking-container{
     margin-top: 10px;
     align-items: center;
     padding: 5px;
@@ -23,6 +19,8 @@
 }
 
 .img-container img{
+    /* width: 100px;
+    height: 100px; */
     width: 90%;
     max-width: 200px;
     border-radius: 50%;
@@ -53,38 +51,4 @@
 
 .booking-details p{
     margin: 0;
-} */
-
-/* 
-@media screen and (max-width: 768px) {
-    .booking-container{
-        margin-top: 5px;
-        padding: 3px;
-    }
-
-    .booking{
-        flex-direction: column;
-    }
-
-    .booking-details{
-        margin-left: 0;
-        align-items: center;
-        text-align: center;
-    }
-
-    .img-container img{
-        width: 80px;
-        height: 80px;
-    }
 }
-
-@media screen and (max-width: 480px) {
-    .booking-container{
-        border-radius: 10px;
-    }
-
-    .img-container img{
-        width: 60px;
-        height: 60px;
-    }
-} */
