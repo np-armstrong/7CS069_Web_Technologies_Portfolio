@@ -19,10 +19,12 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('day_rate');
+            $table->string('image_url'); 
+            $table->integer('total');
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */
