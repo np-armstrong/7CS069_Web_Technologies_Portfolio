@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Button } from 'react-bootstrap'
 import EditModal from '../editModal/EditModal'
 import './bookingTile.css'
+import CancelModal from '../cancelModal/CancelModal';
 
 function handleCancel(){
     console.log("Cancel Button Clicked");
@@ -46,7 +47,14 @@ const BookingTile = (props) => {
                       endDate={props.endDate}
                     />
                     {/* TODO: Create Modal to handle deletion */}
-                    <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button>
+                    {/* <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button> */}
+                    <CancelModal 
+                      make={props.make}
+                      model={props.model}
+                      bookingId={props.id}
+                      startDate={props.startDate}
+                      endDate={props.endDate}
+                    />
                 </div>
             </div>    
         </Container>
