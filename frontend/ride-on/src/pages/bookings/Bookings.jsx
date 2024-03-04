@@ -35,8 +35,7 @@ function Bookings() {
           <h1>My Bookings</h1>
           <hr/>
         </div>
-        {/* !! If there are no bookings, create a way to tell the user there are no bookings */}
-        <div className='booking-map'>
+        {bookings[0] && Object.keys(bookings[0]).length > 0 ? <div className='booking-map'> 
           {bookings[0] != null ? bookings[0].map((booking, index) => {
             return (
               <BookingTile
@@ -54,9 +53,8 @@ function Bookings() {
           }) : 
           <div className='spinner-container'>
             <Spinner animation="border" variant="dark" size='xl' />
-          </div>
-        }      
-        </div>
+          </div>}      
+        </div> : <h4 style={{ display: 'flex', justifyContent: 'center', height: '100vh' }}>No Bookings Created</h4>}
       </Container> 
 
     </>

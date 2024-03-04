@@ -21,6 +21,7 @@ export default function CancelModal(props) {
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
             console.log(message);
+            alert('An error has occured. Please try again later.');
             return;
         }
 
