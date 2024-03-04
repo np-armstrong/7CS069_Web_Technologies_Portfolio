@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navigation from '../../components/Navigation/Navigation'
 import { Container } from 'react-bootstrap'
 import './bookings.css'
 import BookingTile from '../../components/bookingTile/BookingTile'
+import Spinner from 'react-bootstrap/Spinner'
 
 
 function Bookings() {
@@ -28,6 +29,25 @@ function Bookings() {
       'day_rate': 25
     },
   ]);
+
+  const[bookings, setBookings] = useState([]) //!! This will be used to store the bookings from the backend
+
+  //!! GET Bookings from the backend
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const response = await fetch('/api/bookings/'); //Uses the proxy in the package.json file to avoid CORS issues
+        const data = await response.json();
+        setBookings(Object.values(data));
+      } catch (error) {
+        console.error('Error fetching bookings:', error);
+        // Handle errors (e.g., display an error message)
+        alert('Error fetching bookings', error);
+      }
+    }; 
+
+    fetchBookings();
+  }, []); 
   
   return (
     <>
@@ -39,7 +59,7 @@ function Bookings() {
         </div>
 
         <div className='booking-map'>
-          {bookingDetails.map((booking, index) => {
+          {bookings[0] != null ? bookings[0].map((booking, index) => {
             return (
               <BookingTile
                 key={index}
@@ -52,7 +72,11 @@ function Bookings() {
                 dayRate={booking.day_rate}
               />
             )
-          })}      
+          }) : 
+          <div className='spinner-container'>
+            <Spinner animation="border" variant="dark" size='xl' />
+          </div>
+        }      
         </div>
       </Container> 
 
