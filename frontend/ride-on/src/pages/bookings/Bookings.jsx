@@ -29,7 +29,7 @@ function Bookings() {
       'day_rate': 25
     },
   ]);
-
+  
   const[bookings, setBookings] = useState([]) //!! This will be used to store the bookings from the backend
 
   //!! GET Bookings from the backend
