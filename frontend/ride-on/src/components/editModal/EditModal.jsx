@@ -1,125 +1,238 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Form, Container } from 'react-bootstrap';
+//import './createModal.css';
 
-// Once the data is fetched from the backend, the data will be passed to the EditModal component
-// The EditModal component will be used to display the booking details and allow the user to edit the booking
-// A PUT request will be sent to the backend to update the booking details
+const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
-//Gets the current date to validate the inputted dates
-let todaysDate = new Date(Date.now()).toISOString().slice(0,10);
-let newStartDate = new Date();
-let newEndDate = new Date();
+export default function EditModal(props) {
 
-function EditModal(props) {
-
-    //State variable to show the modal
     const [show, setShow] = useState(false);
 
-    //Functions to show and hide the modal
-    const handleClose = () => {
-        setShow(false);
-        setValidated(); //Reset the validated state variables
-        setValidatedEnd(); //Reset the validated state variables
+    const handleClose = () => { 
+        setShow(false); 
+        setValidated();
+        setValidatedEnd();
+        setSaved(false);
+        window.location.reload();   
     }
     const handleShow = () => setShow(true);
 
-    //State variables to validate the inputted dates
-    const[validated, setValidated] = useState();
-    const[validatedEnd, setValidatedEnd] = useState();
+    //Validation 
+    const[validated, setValidated] = useState(true);
+    const[validatedEnd, setValidatedEnd] = useState(true);
+    //Dates
+    const[newStartDate, setNewStartDate] = useState(props.startDate);
+    const[newEndDate, setNewEndDate] = useState(props.endDate);
+    //Cost
+    const[totalCost, setTotalCost] = useState(props.total);
+    //Saved
+    const[saved, setSaved] = useState(false);
 
-    //Function to grab the data inputted in the start date field
-    const handleStartDateChange = (e) => {
+    //Variables to hold data for POST request
+    //const username = 'user 2'; //This will be changed to the logged in user's username
+    //const make = props.make;
+    //const model = props.model;
+    const dayRate = props.dayRate;
+    //const image = props.image;
+    const id = props.id;
 
-        let newStartDate = e.target.value;
-        console.log(newStartDate);
+    //Use effect to update the data when the start date changes
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            start_date: newStartDate
+        }));
+    }, [newStartDate]);
 
-        //Validate the inputted dates
-        if(newStartDate <= todaysDate){
-            setValidated(false); //If the date is in the past, set the validated state variable to false
+    //Use effect to update the data when the end date changes
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            end_date: newEndDate
+        }));
+        }, [newEndDate]);
+
+    //useEffect used to validate the start date
+    useEffect(() => {
+        if(newStartDate >= todaysDate){
+            setValidated(true);
         } else {
-            setValidated(true); //If the date is in the future, set the validated state variable to true
+            setValidated(false);
         }
+    }, [newStartDate]);
+
+    //useEffect used to validate the end date
+    useEffect(() => {
+        if(newEndDate > newStartDate){
+            setValidatedEnd(true);
+        } else {
+            setValidatedEnd(false);
+        }
+    }, [newEndDate]);
+
+    //Sets the data for the POST request
+    const[data, setData] = useState({
+        // username: username,
+        // make: make,
+        // model: model,
+        start_date: newStartDate, 
+        end_date: newEndDate,    
+        // day_rate: dayRate,
+        // image_url: image,
+        total: totalCost
+    }); 
+    
+    //!! Need to find the Total function and add it here !!
+    //Function to calculate the total cost of the booking -- This appears to work fine, test with jest!
+    function calculateTotalCost(startDate, endDate, dayRate){
+
+            //Convert the dates to a date object
+        const date1 = new Date(startDate).getDate(); 
+        const date2 = new Date(endDate).getDate();
+            
+        const total = (date2 - date1) * dayRate;
+        
+        return total; 
     }
 
-    //This function grabs the data inputted in the end date field
-    function handleEndDateChange(e) {
-        let newEndDate = new Date(e.target.value);
-    
-        //Validate the inputted dates
-        if(newEndDate <= newStartDate){
-            setValidatedEnd(false); //If the date is before the start date, set the validated state variable to false
-        } else {
-            setValidatedEnd(true); //If the date is after the start date, set the validated state variable to true
+    useEffect(() => {
+        setTotalCost(calculateTotalCost(newStartDate, newEndDate, dayRate));
+    }, [newStartDate, newEndDate]);
+
+    useEffect(() => {
+        setData(prevData => ({
+            ...prevData,
+            total: totalCost
+        }));
+    }, [totalCost]);
+
+    //POST request to create a booking
+    async function postData(url, data) {
+        try {
+          const response = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+      
+          if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+          }
+      
+          const responseJson = await response.json();
+          return responseJson; // Returns the new booking object
+          
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error creating booking:', error);
+        }
+        
+    }
+
+    //Handle the save button
+    function handleSave() {
+        if(validated && validatedEnd){
+        postData(`/api/bookings/${id}`, data)
+        .then(responseData => {
+            console.log('Successfully sent data: ', responseData);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error creating booking:', error);
+        });
+        // console.log(JSON.stringify(data));
+        setSaved(!saved);
+        }else{
+            alert('Please enter valid dates');
         }
     }
 
   return (
     <>
       <Button variant="outline-dark" onClick={handleShow}>
-        Edit
+        Edit Booking
       </Button>
 
-
-      <Modal 
-        show={show} 
-        onHide={handleClose} 
-        animation={true}
-        centered
-        >
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{props.title}</Modal.Title>
+          <Modal.Title>Modify your booking.</Modal.Title>
         </Modal.Header>
+        {!saved ? <Modal.Body>
+        <div className="form-container">
+            <div className="bike-details-container">
+                <div className="bike-title">
+                    <h5>{props.bike}</h5>
+                </div>
+                <hr/>
+            </div>
+
+            <div className="date-container">
+
+                {/* This is the Start date field */}
+                <Form noValidate validated={validated}>
+                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                        <Form.Label>Start Date</Form.Label>
+                        <Form.Control
+                            required
+                            type="date"
+                            defaultValue={newStartDate} 
+                            onChange={(e) => setNewStartDate(e.target.value)}
+                            isInvalid={validated === false}
+                            isValid={validated === true}
+                        />
+                        <Form.Control.Feedback type='invalid'>Date cannot be in the past!</Form.Control.Feedback> {/* Displays error message for invalid input */}
+                        <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback> {/* Displays valid message for invalid input */}
+                    </Form.Group>
+                </Form>
+
+                {/* This is the end date field */}
+                <Form noValidate validated={validatedEnd}>
+                    <Form.Group as={Col} md="4" controlId="validationCustom01">
+                        <Form.Label>End Date</Form.Label>
+                        <Form.Control
+                            required
+                            type="date"
+                            defaultValue={newEndDate} 
+                            onChange={(e) => setNewEndDate(e.target.value)} 
+                            isInvalid={validatedEnd === false}
+                            isValid={validatedEnd === true}
+                        />
+                        <Form.Control.Feedback type='invalid'>Date cannot be before or on the start date.</Form.Control.Feedback>
+                        <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
+                        </Form.Group>
+                </Form>
+
+            </div>
+
+            <div className="total-cost">
+                {validated && validatedEnd ? <h5>Total Cost: ${totalCost}</h5> : <h5>Total Cost: $0</h5>}
+            </div>
+        </div>
+        </Modal.Body> : 
+        // This will display a message to tell the user the booking is created
         <Modal.Body>
-            <h5>Booking Details</h5>
-            <p>{`Bike: ${props.bike}`}</p>
-
-            {/* This is the Start date field */}
-            <Form noValidate validated={validated}>
-                <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Label>Start Date</Form.Label>
-                <Form.Control
-                    required
-                    type="date"
-                    defaultValue={props.startDate} 
-                    onChange={handleStartDateChange}
-                    isInvalid={validated === false}
-                    isValid={validated === true}
-                />
-                <Form.Control.Feedback type='invalid'>Date cannot be in the past!</Form.Control.Feedback> {/* Displays error message for invalid input */}
-                <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback> {/* Displays valid message for invalid input */}
-                </Form.Group>
-            </Form>
-
-            {/* This is the end date field */}
-            <Form noValidate validated={validatedEnd}>
-                <Form.Group as={Col} md="4" controlId="validationCustom01">
-                <Form.Label>End Date</Form.Label>
-                <Form.Control
-                    required
-                    type="date"
-                    defaultValue={props.endDate} 
-                    onChange={handleEndDateChange}
-                    isInvalid={validatedEnd === false}
-                    isValid={validatedEnd === true}
-                />
-                <Form.Control.Feedback type='invalid'>Date cannot be before the start date.</Form.Control.Feedback>
-                <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
-                </Form.Group>
-            </Form>
-
-
+            <div className="booking-confirmation">
+                    <div className="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="green" className="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                        </svg>
+                    </div>
+            </div>
+            <h5 className='confirmed-message'>Booking Updated!</h5>
         </Modal.Body>
+        }
         <Modal.Footer>
-          <Button variant="outline-success" onClick={handleClose}>
-            Save Changes
+          <Button variant="secondary" onClick={handleClose}>
+            Close
           </Button>
+          {!saved && <Button variant="outline-success" onClick={handleSave}>
+            Confirm Booking
+          </Button>}
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default EditModal;

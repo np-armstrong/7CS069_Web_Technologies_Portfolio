@@ -35,13 +35,14 @@ const BookingTile = (props) => {
                     <p>Start Date: {props.startDate}</p>
                     <p>End Date: {props.endDate}</p>
                     <p>Day Rate: ${props.dayRate}</p>
-                    <p>{`Total: $${calculateTotalCost(props.startDate, props.endDate, props.dayRate)}`}</p>
+                    {/* <p>{`Total: $${calculateTotalCost(props.startDate, props.endDate, props.dayRate)}`}</p> */}
                     {/* <p>Total Cost: $$$</p> */}
+                    <p>Total Cost: ${props.total}</p>
                 </div>
                 <div className="booking-controls">                   
                     {/* This is our new modal allowing us to pass map data to it */}
                     <EditModal 
-                      title={`Booking Id: ${props.id}`}
+                      id={props.id}
                       bike={`${props.make} ${props.model}`}
                       startDate={props.startDate}
                       endDate={props.endDate}
@@ -52,8 +53,10 @@ const BookingTile = (props) => {
                       make={props.make}
                       model={props.model}
                       bookingId={props.id}
+                      dayRate={props.dayRate}
                       startDate={props.startDate}
                       endDate={props.endDate}
+                      total={props.total}
                     />
                 </div>
             </div>    
