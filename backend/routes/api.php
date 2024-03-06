@@ -4,6 +4,7 @@ use App\Http\Controllers\BikesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;  //Import the BookingController
+use App\Http\Controllers\UserListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,8 @@ Route::apiResource('bookings', BookingController::class)->only([
 
 Route::apiResource('bikes', BikesController::class)->only([
     'index'
+]);
+
+Route::apiResource('user-listings', UserListingController::class)->only([
+    'index', 'show', 'store', 'update', 'destroy'
 ]);
