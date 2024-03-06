@@ -30,7 +30,7 @@ function CreateModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    const username = 'user 2'; //This will be changed to the logged in user's username
+    const username = 'user'; //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     const dayRate = props.dayRate;
@@ -190,6 +190,7 @@ function CreateModal(props) {
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>Start Date</Form.Label>
                         <Form.Control
+                            data-testid="start-date" // This is the data-testid attribute for the test file to capture
                             required
                             type="date"
                             defaultValue={todaysDate} 
@@ -207,6 +208,7 @@ function CreateModal(props) {
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>End Date</Form.Label>
                         <Form.Control
+                            data-testid="end-date" // This is the data-testid attribute for the test file to capture
                             required
                             type="date"
                             defaultValue={todaysDate} 
@@ -218,11 +220,10 @@ function CreateModal(props) {
                         <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                 </Form>
-
             </div>
 
             <div className="total-cost">
-                {validated && validatedEnd ? <h5>Total Cost: ${totalCost}</h5> : <h5>Total Cost: $0</h5>}
+                {validated && validatedEnd ? <h5 data-testid='total'>Total Cost: ${totalCost}</h5> : <h5 data-testid='invalid-total'>Total Cost: $0</h5>}
             </div>
         </div>
         </Modal.Body> : 
