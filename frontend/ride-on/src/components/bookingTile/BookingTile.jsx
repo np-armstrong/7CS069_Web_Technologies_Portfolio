@@ -4,22 +4,6 @@ import EditModal from '../editModal/EditModal'
 import './bookingTile.css'
 import CancelModal from '../cancelModal/CancelModal';
 
-function handleCancel(){
-    console.log("Cancel Button Clicked");
-};
-
-    //!! THIS WILL BE MOVED OVER TO THE CREATE MODAL COMPONENT -- TOTALS WILL COME FROM THE BACKEND !!
-    //Function to calculate the total cost of the booking -- This appears to work fine, test with jest!
-    function calculateTotalCost(startDate, endDate, dayRate){
-
-    //Convert the dates to a date object
-    const date1 = new Date(startDate).getDate(); 
-    const date2 = new Date(endDate).getDate();
-    
-    const total = (date2 - date1) * dayRate;
-
-    return total; 
-  }
 
 const BookingTile = (props) => {
   return (
@@ -46,6 +30,8 @@ const BookingTile = (props) => {
                       bike={`${props.make} ${props.model}`}
                       startDate={props.startDate}
                       endDate={props.endDate}
+                      dayRate={props.dayRate}
+                      total={props.total}
                     />
                     {/* TODO: Create Modal to handle deletion */}
                     {/* <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button> */}

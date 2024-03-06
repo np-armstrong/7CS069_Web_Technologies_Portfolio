@@ -23,7 +23,7 @@ function Bookings() {
         alert('Error fetching bookings', error);
       }
     }; 
-
+    
     fetchBookings();
   }, []); 
   
@@ -62,30 +62,3 @@ function Bookings() {
 }
 
 export default Bookings
-
-// <Container key={index} className='booking-container'>
-// <div className="booking">
-//   <div className="img-container">
-//     <img src={booking.image} />
-//   </div>
-//   <div className="booking-details">
-//     <h5>{booking.make} {booking.model}</h5>
-//     <hr/>
-//     <p>Start Date: {booking.start_date}</p>
-//     <p>End Date: {booking.end_date}</p>
-//     <p>Day Rate: ${booking.day_rate}</p>
-//     <p>{`Total: $${calculateTotalCost(booking.start_date, booking.end_date, booking.day_rate)}`}</p>
-//   </div>
-//   <div className="booking-controls">                   
-//     {/* This is our new modal allowing us to pass map data to it */}
-//     <EditModal 
-//       title={`Booking Id: ${booking.id}`}
-//       bike={`${booking.make} ${booking.model}`}
-//       startDate={booking.start_date}
-//       endDate={booking.end_date}
-//     />
-//     {/* TODO: Create Modal to handle deletion */}
-//     <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button>
-//   </div>
-// </div>    
-// </Container>

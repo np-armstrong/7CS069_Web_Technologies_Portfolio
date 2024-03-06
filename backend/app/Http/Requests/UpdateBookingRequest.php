@@ -28,6 +28,7 @@ class UpdateBookingRequest extends FormRequest
             'start_date' => ['sometimes', 'required', 'date'],
             'end_date' => ['sometimes', 'required', 'date'],
             'day_rate' => ['sometimes', 'required', 'numeric'],
+            'total' => ['sometimes', 'required', 'numeric'],
         ];
     }
 }
