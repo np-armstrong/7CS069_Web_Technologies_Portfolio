@@ -18,4 +18,10 @@ class UserListing extends Model
         'image_url',
         'day_rate',
     ];
+    
+    // Define the relationship between the UserListing and the user model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
