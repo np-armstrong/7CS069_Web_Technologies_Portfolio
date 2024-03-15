@@ -18,8 +18,9 @@ import Profile from './pages/profile/Profile.jsx';
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/home" element={<HomePage/>} />
@@ -28,8 +29,9 @@ function App() {
           <Route path="/Bookings" element={<Bookings />}/> 
           <Route path="/Profile" element={<Profile />}/>
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
+    
   );
 }
 

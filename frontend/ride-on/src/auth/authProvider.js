@@ -1,5 +1,5 @@
 import { useContext, createContext, useState } from 'react';
-import { useNavigate } from react-router-dom;
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -20,19 +20,30 @@ export default function AuthProvider({ children }) {
                 body: JSON.stringify(data)
             });
             const responseData = await response.json();
-            if(responseData.token) {
+            if(responseData.data) {
+                setUsername(responseData.data.username);
+                setToken(responseData.data.token);
+                localStorage.setItem('username', responseData.data.username);
                 localStorage.setItem('token', responseData.token);
-                setToken(responseData.token);
                 navigate('/home');
+                return;
             }
-        
+            throw new Error(responseData.error);
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
+    function logoutAction() {
+        setUsername(null);
+        setToken(null);
+        localStorage.removeItem('username');
+        localStorage.removeItem('token');
+        navigate('/login');
+    }
+
     return (
-        <AuthContext.Provider>
+        <AuthContext.Provider value={{ username, token, loginAction, logoutAction }} >
         {children}
         </AuthContext.Provider>
     );

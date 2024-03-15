@@ -24,19 +24,11 @@ class UserAuthController extends Controller
             'email' => $fields['email'],
             'password' => Hash::make($fields['password']) //Hash::make is used to hash the password https://laravel.com/docs/5.0/hashing
         ]);
-        // Create the token
-        //$token = $user->createToken('myapptoken')->plainTextToken; //I originally returned a token but I don't think it's needed... The register will redirect to the login page so the token will be created then...
-        
-        // $response = [
-        //     //'user' => $user,
-        //     //'token' => $token
-        // ]; //I don't think this is needed...
 
         // Return the response
         return response()->json([
-            'message' => 'User created successfully',
-            //$response, 201
-        ]);
+            'message' => 'User created successfully',   
+        ]);  
     }
 
     public function login (Request $request) {

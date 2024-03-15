@@ -1,9 +1,14 @@
-import './hero.css'
-import Container from 'react-bootstrap/esm/Container'
-import Row from 'react-bootstrap/esm/Row'
-import Button from 'react-bootstrap/esm/Button'
+import './hero.css';
+import Container from 'react-bootstrap/esm/Container';
+import Row from 'react-bootstrap/esm/Row';
+import Button from 'react-bootstrap/esm/Button';
+import { Link } from 'react-router-dom';
+
 
 function Hero () {
+
+
+
     return (
         <>  
                 <Container fluid>
@@ -18,7 +23,15 @@ function Hero () {
                                 <h1 className='heading'>Embrace the Adventure</h1>
                                 <h4 className='subheading'>Find the perfect bike for your next journey, hassle-free rentals from riders, for riders.</h4>
                             </div>                        
-                            <Button variant="light" size="lg" className="Sign Up">Sign Up</Button>
+                            <Button 
+                                variant="light" 
+                                size="lg" 
+                                className="Sign Up"
+                                as={Link}
+                                to="/register"
+                                >
+                                    Sign Up
+                                </Button>
 
                         </div>
 
