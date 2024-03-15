@@ -50,7 +50,7 @@ class UserAuthController extends Controller
         //->orWhere('username', $fields['username'])->first(); //This caused errors so removed it for now...
 
         // Check password
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
+        if (!$user || !Hash::check($fields['password'], $user->password)) { //Hash::check is used to check the hashed password https://laravel.com/docs/5.0/hashing
             return response([
                 'message' => 'username or password is incorrect. Please try again.'
             ], 401); //401 is the status code for unauthorized access
@@ -58,13 +58,9 @@ class UserAuthController extends Controller
 
         $token = $user->createToken($user->username.'myapptoken')->plainTextToken; 
 
-        $response = [
-            'user' => $user,
-            'token' => $token
-        ];
-
+        //Edited to only return the username for the creation of listings, viewing user listings/bookings 
         return response()->json([
-            'user' => $user,
+            'username' => $user->username,
             'token' => $token
         ]);
     }

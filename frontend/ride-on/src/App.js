@@ -1,5 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import AuthProvider from './auth/authProvider.js';
 
 import {
   Route,
@@ -17,15 +18,18 @@ import Profile from './pages/profile/Profile.jsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage/>} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/login" element={<Login />}/> 
-        <Route path="/Bookings" element={<Bookings />}/> 
-        <Route path="/Profile" element={<Profile />}/>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/home" element={<HomePage/>} />
+          <Route path="/register" element={<Register />}/>
+          <Route path="/login" element={<Login />}/> 
+          <Route path="/Bookings" element={<Bookings />}/> 
+          <Route path="/Profile" element={<Profile />}/>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
