@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import './registrationForm.css'; // Add correct import statement for CSS file
-import { redirect } from 'react-router-dom'; 
+import { redirect, useNavigate } from 'react-router-dom'; 
 
 const RegistrationForm = () => {
 
@@ -85,8 +85,8 @@ const RegistrationForm = () => {
             alert('You have successfully registered! Please log in to continue.');
             
             //TODO: Redirect not working! 
-            return redirect('/login'); //src: https://reactrouter.com/en/main/fetch/redirect
-
+            // return Navigate('/login'); //src: https://reactrouter.com/en/main/fetch/redirect
+         
         } catch (error) {
 
             if(error.response?.status === 422){

@@ -5,10 +5,24 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../auth/authProvider';
+import { useEffect, useState } from 'react';
 
 function Navigation(props) {
 
-  let isLoggedIn = false; //Change to state variable later
+  const auth = useAuth();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true); //Change to state variable later
+  
+  // This useEffect is used to check if the user is logged in or not
+  useEffect(() => {
+    if (auth.token === "") {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  }); 
+
   let isBookings = props.isBookings;
   
   return (
@@ -50,7 +64,10 @@ function Navigation(props) {
                         My Profile
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action5">
+                      <NavDropdown.Item 
+                        href="#action5"
+                        onClick={auth.logoutAction}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>

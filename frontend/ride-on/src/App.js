@@ -15,6 +15,7 @@ import Register from './pages/register/Register.jsx';
 import Login from './pages/login/Login.jsx';
 import Bookings from './pages/bookings/Bookings.jsx'; 
 import Profile from './pages/profile/Profile.jsx'; 
+import ProtectedRoute from './auth/ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -26,8 +27,10 @@ function App() {
           <Route path="/home" element={<HomePage/>} />
           <Route path="/register" element={<Register />}/>
           <Route path="/login" element={<Login />}/> 
-          <Route path="/Bookings" element={<Bookings />}/> 
-          <Route path="/Profile" element={<Profile />}/>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/Bookings" element={<Bookings />}/> 
+            <Route path="/Profile" element={<Profile />}/>
+          </Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>
