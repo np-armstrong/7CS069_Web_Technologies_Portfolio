@@ -35,6 +35,7 @@ export default function AuthProvider({ children }) {
     }
 
     function logoutAction() {
+        //TODO: Send post request to logout - pass token from local storage to API
         setUser(null);
         setToken("");
         localStorage.removeItem('site');

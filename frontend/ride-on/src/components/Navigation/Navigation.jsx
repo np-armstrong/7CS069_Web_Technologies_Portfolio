@@ -13,6 +13,7 @@ function Navigation(props) {
   const auth = useAuth();
 
   const [isLoggedIn, setIsLoggedIn] = useState(true); //Change to state variable later
+  const [username, setUsername] = useState(""); 
   
   // This useEffect is used to check if the user is logged in or not
   useEffect(() => {
@@ -24,14 +25,7 @@ function Navigation(props) {
     }
   }); 
 
-  const [username, setUsername] = useState(""); 
-
-  // This useEffect is used to check if the user is logged in or not and to get the username
-  // useEffect(() => { 
-  //   // 
-  // })[isLoggedIn];
-
-  let isBookings = props.isBookings;
+  // let isBookings = props.isBookings;
   
   return (
     <>

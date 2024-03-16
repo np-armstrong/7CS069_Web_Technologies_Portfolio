@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col, Form, Container } from 'react-bootstrap';
 import './createModal.css';
+import { useAuth } from '../../auth/authProvider';
+import { redirect } from 'react-router-dom'; 
 
 const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
@@ -16,7 +18,18 @@ function CreateModal(props) {
         setValidatedEnd();
         setSaved(false);
     }
-    const handleShow = () => setShow(true);
+
+    //Original
+    //const handleShow = () => setShow(true);
+    // Now with checking for logged in user
+    function handleShow() {
+        if (auth.token === "") {
+            window.location.href = "/register";
+        } else {
+            setShow(true);
+        }
+    }
+
 
     //Validation 
     const[validated, setValidated] = useState();
@@ -147,6 +160,18 @@ function CreateModal(props) {
             alert('Please enter valid dates');
         }
     }
+
+    //TODO: Check if user is logged in before displaying the modal
+    const auth = useAuth();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if (auth.token === "") {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+        }
+    });
 
   return (
     <>
