@@ -19,9 +19,17 @@ function Navigation(props) {
     if (auth.token === "") {
       setIsLoggedIn(false);
     } else {
+      setUsername(auth.user);
       setIsLoggedIn(true);
     }
   }); 
+
+  const [username, setUsername] = useState(""); 
+
+  // This useEffect is used to check if the user is logged in or not and to get the username
+  // useEffect(() => { 
+  //   // 
+  // })[isLoggedIn];
 
   let isBookings = props.isBookings;
   
@@ -57,11 +65,16 @@ function Navigation(props) {
                   {isLoggedIn ? (
                     <NavDropdown
                       style={{ marginBottom: '5px' }}
-                      title="Profile"
+                      title={`Hi, ${username}!`}
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
+                      <NavDropdown.Item 
+                        href="/bookings">
+                        My Bookings
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
                       <NavDropdown.Item href="#action4">
-                        My Profile
+                        My Listings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item 
@@ -74,7 +87,7 @@ function Navigation(props) {
                   ) : (
                     <NavDropdown
                       style={{ marginBottom: '5px' }}
-                      title="Profile"
+                      title="Menu"
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
                       <NavDropdown.Item href="/login">
@@ -83,7 +96,25 @@ function Navigation(props) {
                     </NavDropdown>
                   )}
                 </Nav>
-                {isBookings ? 
+                {/* New button for listing bikes */}
+                {isLoggedIn ? 
+                <Button  
+                  as={Link} 
+                  to= "/"  // This needs to be configured when listings option available
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  List My Bike
+                </Button> : 
+                  <Button 
+                  as={Link} 
+                  to="/register"
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  Sign Up!
+                </Button>
+                }
+                {/* Original code before decision to add bookings to dropdown */}
+                {/* {isBookings ? 
                 (<Button 
                   as={Link} 
                   to={"/"} 
@@ -97,7 +128,7 @@ function Navigation(props) {
                   variant="dark" 
                   style={{ marginRight: '10px', marginBottom: "5px"}}>
                   Manage Bookings
-                </Button>)}
+                </Button>)} */}
                 <NavDropdown.Divider />
                 {/* <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button> */}
               </Offcanvas.Body>
