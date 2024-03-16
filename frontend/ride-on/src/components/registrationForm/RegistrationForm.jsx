@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import './registrationForm.css'; // Add correct import statement for CSS file
-import { Link } from 'react-router-dom'; 
+import { redirect } from 'react-router-dom'; 
 
 const RegistrationForm = () => {
 
@@ -83,7 +83,10 @@ const RegistrationForm = () => {
             const responseData = await response.json();
             console.log(responseData);
             alert('You have successfully registered! Please log in to continue.');
-            //TODO: Redirect to login page after successful registration
+            
+            //TODO: Redirect not working! 
+            return redirect('/login'); //src: https://reactrouter.com/en/main/fetch/redirect
+
         } catch (error) {
 
             if(error.response?.status === 422){
@@ -99,58 +102,59 @@ const RegistrationForm = () => {
 
   return (
     <>
-    <div className="registrationContainer">
-        <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control 
-                type="text" 
-                placeholder="Enter username" 
-                name="username"
-                isValid={formData.username.length > 3}
-                onChange={handleInputChange}
-            />
-        </Form.Group>
-            
-            <Form.Label>Email address</Form.Label>
-            <Form.Control 
-                type="email" 
-                placeholder="Enter email"
-                name="email"
-                isValid={validateEmail(formData.email)} // validation for email
-                onChange={handleInputChange}
-                
-            />
-            <Form.Text className="text-muted">
-            {/* We'll never share your email with anyone else. */}
-            </Form.Text>
-        </Form.Group>
+        <Container className='registrationContainer'>
+            <Row>
+                <Form className='registrationForm'>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control 
+                        type="text" 
+                        placeholder="Enter username" 
+                        name="username"
+                        isValid={formData.username.length > 3}
+                        onChange={handleInputChange}
+                    />
+                </Form.Group>
+                    
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control 
+                        type="email" 
+                        placeholder="Enter email"
+                        name="email"
+                        isValid={validateEmail(formData.email)} // validation for email
+                        onChange={handleInputChange}
+                        
+                    />
+                    <Form.Text className="text-muted">
+                    {/* We'll never share your email with anyone else. */}
+                    </Form.Text>
+                </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control 
-                type="password"     
-                placeholder="Password" 
-                name="password"
-                isValid={validatePassword(formData.password)} // validation for password
-                isInvalid={formData.password.length < 8} 
-                onChange={handleInputChange}
-            />
-        </Form.Group>
-        <Button 
-            variant="dark" 
-            type="submit"
-            onClick={handleSubmit}
-        >
-            Sign Up!
-        </Button>
-        <hr />
-        <p>Already a member?</p> 
-        <a href="/login">Login</a>
-        </Form>
-        
-    </div> 
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                        type="password"     
+                        placeholder="Password" 
+                        name="password"
+                        isValid={validatePassword(formData.password)} // validation for password
+                        isInvalid={formData.password.length < 8} 
+                        onChange={handleInputChange}
+                    />
+                </Form.Group>
+                <Button 
+                    variant="dark" 
+                    type="submit"
+                    onClick={handleSubmit}
+                >
+                    Sign Up!
+                </Button>
+                <hr />
+                <p>Already a member?</p> 
+                <a href="/login">Login</a>
+                </Form>
+            </Row>
+        </Container>
     </>
   )
 }

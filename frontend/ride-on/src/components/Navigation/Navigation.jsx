@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 function Navigation(props) {
 
-  let isLoggedIn = true; //Change to state variable later
+  let isLoggedIn = false; //Change to state variable later
   let isBookings = props.isBookings;
   
   return (
