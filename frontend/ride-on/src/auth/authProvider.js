@@ -37,21 +37,25 @@ export default function AuthProvider({ children }) {
     }
 
     //!! TODO !!//
-    function logoutAction() {
+    async function logoutAction() {
 
         try {
-            const response = fetch('api/logout', {
+            const response = await fetch('api/logout', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({token: token})
+                body: JSON.stringify()
             });
+            const responseData = await response.json();
             if(response.status !== 401 && response.status !== 500) {
+                // console.log(responseData); 
                 setUser(null);
                 setToken("");
                 localStorage.removeItem('site');
                 localStorage.removeItem('user');
+                alert(responseData.message); 
                 navigate('/login');
                 return;
             }
