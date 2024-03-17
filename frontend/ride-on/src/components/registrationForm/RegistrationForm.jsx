@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import './registrationForm.css'; // Add correct import statement for CSS file
-import { redirect, useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const RegistrationForm = () => {
+
+    const navigate = useNavigate(); 
 
     const [formData, setFormData] = React.useState({
         username: '',
@@ -17,11 +19,10 @@ const RegistrationForm = () => {
             ...formData,
             [event.target.name]: event.target.value,
         });
-        console.log(formData); 
+        //console.log(formData); 
     };
 
     function validateEmail(email) {
-        // const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])+.(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; //src: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#validation
         const regex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/; //SRC: https://saturncloud.io/blog/how-can-i-validate-an-email-address-using-a-regular-expression/#:~:text=In%20the%20context%20of%20email,and%20efficiently%20validate%20user%20input. 
         return regex.test(email);
     }
@@ -71,7 +72,9 @@ const RegistrationForm = () => {
                 },
                 body: JSON.stringify(formData),
             });
-            
+            //!! TODO !!//
+            //Add check for bad response code for error handling -- check the loginAction function in authProvider.js for reference
+
             // if (!response.ok) {
             //     // const errorData = await response.json();
 
@@ -83,9 +86,8 @@ const RegistrationForm = () => {
             const responseData = await response.json();
             console.log(responseData);
             alert('You have successfully registered! Please log in to continue.');
-            
-            //TODO: Redirect not working! 
-            // return Navigate('/login'); //src: https://reactrouter.com/en/main/fetch/redirect
+            navigate('/login'); 
+
          
         } catch (error) {
 

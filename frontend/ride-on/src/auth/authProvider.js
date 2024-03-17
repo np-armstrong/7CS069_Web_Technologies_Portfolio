@@ -38,12 +38,36 @@ export default function AuthProvider({ children }) {
 
     //!! TODO !!//
     function logoutAction() {
+
+        try {
+            const response = fetch('api/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({token: token})
+            });
+            if(response.status !== 401 && response.status !== 500) {
+                setUser(null);
+                setToken("");
+                localStorage.removeItem('site');
+                localStorage.removeItem('user');
+                navigate('/login');
+                return;
+            }
+            throw new Error('Error logging out');
+        } catch (error) {
+            alert(error)
+        }
         //TODO: Send post request to logout - pass token from local storage to API
-        setUser(null);
-        setToken("");
-        localStorage.removeItem('site');
-        localStorage.removeItem('user');
-        navigate('/login');
+
+
+        // Original
+        // setUser(null);
+        // setToken("");
+        // localStorage.removeItem('site');
+        // localStorage.removeItem('user');
+        // navigate('/login');
     }
 
     return (
