@@ -28,7 +28,7 @@ function LoginForm() {
       ...prev,
       [event.target.name]: event.target.value
     }));
-    console.log(input);
+    // console.log(input);
   }
 
   //src: https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5

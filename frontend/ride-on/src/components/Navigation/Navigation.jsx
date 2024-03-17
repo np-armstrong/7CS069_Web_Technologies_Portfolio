@@ -14,7 +14,7 @@ function Navigation(props) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true); //Change to state variable later
   const [username, setUsername] = useState(""); 
-  
+
   // This useEffect is used to check if the user is logged in or not
   useEffect(() => {
     if (auth.token === "") {
@@ -107,6 +107,14 @@ function Navigation(props) {
                   Sign Up!
                 </Button>
                 }
+                {/* <Button
+                  onClick={() => {
+                    console.log(localStorage.getItem('user'));
+                    console.log(typeof localStorage.getItem('user')); 
+                  }}
+                >
+                  Random Button
+                </Button> */}
                 {/* Original code before decision to add bookings to dropdown */}
                 {/* {isBookings ? 
                 (<Button 
