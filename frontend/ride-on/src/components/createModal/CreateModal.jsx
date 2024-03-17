@@ -43,7 +43,7 @@ function CreateModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    const username = 'user'; //This will be changed to the logged in user's username
+    const username = localStorage.getItem('user'); //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     const dayRate = props.dayRate;
