@@ -8,6 +8,7 @@ use App\Http\Resources\BookingCollection; //Import the BookingCollection
 use App\Http\Resources\BookingResource;
 use App\Models\Booking; //Import the booking model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -25,6 +26,7 @@ class BookingController extends Controller
 
     public function store(StoreBookingRequest $request)
     {   
+
         //Validate the request
         $validated = $request->validated();
         //Create a new booking
@@ -32,6 +34,7 @@ class BookingController extends Controller
 
         //Return the booking along with a 201 status code
         return new BookingResource($booking);
+
     }
 
     public function update(UpdateBookingRequest $request, Booking $booking)

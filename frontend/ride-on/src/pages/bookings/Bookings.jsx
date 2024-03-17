@@ -9,12 +9,18 @@ import Spinner from 'react-bootstrap/Spinner'
 function Bookings() {
 
   const[bookings, setBookings] = useState([]) //!! This will be used to store the bookings from the backend
-
+  const[token, setToken] = useState(localStorage.getItem('site') || ""); //!! This will be used to store the token from the backend
   //!! GET Bookings from the backend
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch('/api/bookings/'); //Uses the proxy in the package.json file to avoid CORS issues
+        const response = await fetch('/api/bookings/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }); //Uses the proxy in the package.json file to avoid CORS issues
         const data = await response.json();
         setBookings(Object.values(data));
       } catch (error) {

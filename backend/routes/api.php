@@ -28,7 +28,7 @@ Route::post('logout', [UserAuthController::class, 'logout'])->middleware('auth:s
 
 Route::apiResource('bookings', BookingController::class)->only([
     'index', 'show', 'store', 'update', 'destroy', 'search'
-]);
+])->middleware('auth:sanctum');
 
 Route::apiResource('bikes', BikesController::class)->only([
     'index'

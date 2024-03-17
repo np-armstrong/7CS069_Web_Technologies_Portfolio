@@ -11,6 +11,7 @@ const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 function CreateModal(props) {
 
     const [show, setShow] = useState(false);
+    const [token, setToken] = useState(localStorage.getItem('site') || "")
 
     const handleClose = () => { 
         setShow(false); 
@@ -125,7 +126,10 @@ function CreateModal(props) {
         try {
           const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}` 
+            },
             body: JSON.stringify(data)
           });
       

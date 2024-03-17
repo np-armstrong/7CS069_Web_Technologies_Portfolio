@@ -48,7 +48,7 @@ class UserAuthController extends Controller
             ], 401); //401 is the status code for unauthorized access
         }
 
-        $token = $user->createToken($user->username.'myapptoken')->plainTextToken; 
+        $token = $user->createToken($user->username.'personalapptoken')->plainTextToken; 
 
         //Edited to only return the username for the creation of listings, viewing user listings/bookings 
         return response()->json([

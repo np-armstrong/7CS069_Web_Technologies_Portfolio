@@ -63,6 +63,11 @@ function Navigation(props) {
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
                       <NavDropdown.Item 
+                        href="/">
+                        Home
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item 
                         href="/bookings">
                         My Bookings
                       </NavDropdown.Item>
