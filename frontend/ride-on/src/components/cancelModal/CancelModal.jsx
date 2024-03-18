@@ -9,6 +9,7 @@ export default function CancelModal(props) {
     const handleShow = () => setShow(true);
 
     const[reload, setReload] = useState(false);
+    const[token, setToken] = useState(localStorage.getItem('site') || "");
 
     const id = props.bookingId;
 
@@ -16,6 +17,10 @@ export default function CancelModal(props) {
     async function destroy(url) {
         const response = await fetch(url, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
         });
 
         if (!response.ok) {

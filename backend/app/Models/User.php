@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Booking::class);
     }
+    // Define the relationship between the User and the user_listing model
+    public function user_listings()
+    {
+        return $this->hasMany(UserListing::class);
+    }
 }

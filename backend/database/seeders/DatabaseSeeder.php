@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             BikeSeeder::class,
+            UserListingSeeder::class,
         ]); // This will call the BikeSeeder class
         
     }

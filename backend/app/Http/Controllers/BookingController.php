@@ -8,11 +8,12 @@ use App\Http\Resources\BookingCollection; //Import the BookingCollection
 use App\Http\Resources\BookingResource;
 use App\Models\Booking; //Import the booking model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
     public function index(Request $request)
-    {   
+    { 
         //Return a collection of bookings
         return new BookingCollection(Booking::all());
     }
@@ -25,6 +26,7 @@ class BookingController extends Controller
 
     public function store(StoreBookingRequest $request)
     {   
+
         //Validate the request
         $validated = $request->validated();
         //Create a new booking
@@ -32,6 +34,7 @@ class BookingController extends Controller
 
         //Return the booking along with a 201 status code
         return new BookingResource($booking);
+
     }
 
     public function update(UpdateBookingRequest $request, Booking $booking)
@@ -54,9 +57,8 @@ class BookingController extends Controller
 
     }
 
-    public function search(Request $request)
+    public function userbookings($search)
     {
-        //Get the search term param
-        
+        return Booking::where("username", $search)->get();
     }
 }

@@ -3,12 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col, Form, Container } from 'react-bootstrap';
 import './createModal.css';
+import { useAuth } from '../../auth/authProvider';
+import { redirect } from 'react-router-dom'; 
 
 const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
 function CreateModal(props) {
 
     const [show, setShow] = useState(false);
+    const [token, setToken] = useState(localStorage.getItem('site') || "")
 
     const handleClose = () => { 
         setShow(false); 
@@ -16,7 +19,18 @@ function CreateModal(props) {
         setValidatedEnd();
         setSaved(false);
     }
-    const handleShow = () => setShow(true);
+
+    //Original
+    //const handleShow = () => setShow(true);
+    // Now with checking for logged in user
+    function handleShow() {
+        if (auth.token === "") {
+            window.location.href = "/register";
+        } else {
+            setShow(true);
+        }
+    }
+
 
     //Validation 
     const[validated, setValidated] = useState();
@@ -30,7 +44,7 @@ function CreateModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    const username = 'user'; //This will be changed to the logged in user's username
+    const username = localStorage.getItem('user'); //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     const dayRate = props.dayRate;
@@ -112,7 +126,10 @@ function CreateModal(props) {
         try {
           const response = await fetch(url, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}` 
+            },
             body: JSON.stringify(data)
           });
       
@@ -147,6 +164,18 @@ function CreateModal(props) {
             alert('Please enter valid dates');
         }
     }
+
+    //TODO: Check if user is logged in before displaying the modal
+    const auth = useAuth();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        if (auth.token === "") {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+        }
+    });
 
   return (
     <>
