@@ -31,7 +31,7 @@ export default function EditModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    const username = 'user 2'; //This will be changed to the logged in user's username
+    //const username = 'user 2'; //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     const currentDayRate = props.dayRate;
@@ -81,7 +81,6 @@ export default function EditModal(props) {
 
     //Sets the data for the POST request
     const[data, setData] = useState({
-        username: username,
         make: make,
         model: model,
         start_date: newStartDate, 
@@ -116,12 +115,17 @@ export default function EditModal(props) {
         }));
     }, [totalCost]);
 
+    const [token, setToken] = useState(localStorage.getItem('site') || "");
+
     //POST request to create a booking
     async function postData(url, data) {
         try {
           const response = await fetch(url, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
             body: JSON.stringify(data)
           });
       
@@ -160,7 +164,7 @@ export default function EditModal(props) {
   return (
     <>
       <Button variant="outline-dark" onClick={handleShow}>
-        Edit Booking
+        Edit 
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>

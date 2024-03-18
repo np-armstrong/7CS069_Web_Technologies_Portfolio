@@ -5,11 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BikeSeeder extends Seeder
+class UserListingSeeder extends Seeder
 {
-    
     private $bikes = [
-        [
+        [   
+            'username' => 'DannyBoy96',
             'make' => 'Honda',
             'model' => 'Zoomer-X',
             'engine' => '110',
@@ -18,6 +18,7 @@ class BikeSeeder extends Seeder
             'day_rate' => 25,
         ],
         [
+            'username' => 'JohnDoe123',
             'make' => 'Honda',
             'model' => 'Wave 110 S',
             'engine' => '110',
@@ -26,6 +27,7 @@ class BikeSeeder extends Seeder
             'day_rate' => 30,
         ],
         [
+            'username' => 'RubberDuck',
             'make' => 'KTM',
             'model' => '390 Duke',
             'engine' => '390',
@@ -33,23 +35,15 @@ class BikeSeeder extends Seeder
             'image_url' => 'https://wmr1.com/cdn/shop/files/ktm-390-duke-1.jpg?v=1707410892&width=1080',
             'day_rate' => 85,
         ],
-        [
-            'make' => 'Honda',
-            'model' => 'CBR1000RR',
-            'engine' => '1000',
-            'transmission' => 'Manual',
-            'image_url' => 'https://frasermotorcycles.com.au/cdn/shop/products/HONDA_CBR1000RR-R_SP_2022_2_1200x.png?v=1651111375',
-            'day_rate' => 100,
-        ],
-    ];
 
+    ];
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
         foreach ($this->bikes as $bike) {
-            \App\Models\Bike::factory()->create($bike);
+            \App\Models\UserListing::factory()->create($bike);
         }
     }
 }

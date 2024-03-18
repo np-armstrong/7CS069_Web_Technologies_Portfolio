@@ -5,11 +5,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../auth/authProvider';
+import { useEffect, useState } from 'react';
 
 function Navigation(props) {
 
-  let isLoggedIn = true; //Change to state variable later
-  let isBookings = props.isBookings;
+  const auth = useAuth();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true); //Change to state variable later
+  const [username, setUsername] = useState(""); 
+
+  // This useEffect is used to check if the user is logged in or not
+  useEffect(() => {
+    if (auth.token === "") {
+      setIsLoggedIn(false);
+    } else {
+      setUsername(auth.user);
+      setIsLoggedIn(true);
+    }
+  }); 
+
+  // let isBookings = props.isBookings;
   
   return (
     <>
@@ -43,21 +59,34 @@ function Navigation(props) {
                   {isLoggedIn ? (
                     <NavDropdown
                       style={{ marginBottom: '5px' }}
-                      title="Profile"
+                      title={`Hi, ${username}!`}
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
-                      <NavDropdown.Item href="#action4">
-                        My Profile
+                      <NavDropdown.Item 
+                        href="/">
+                        Home
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action5">
+                      <NavDropdown.Item 
+                        href="/bookings">
+                        My Bookings
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="#action4">
+                        My Listings
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item 
+                        href="#action5"
+                        onClick={auth.logoutAction}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>
                   ) : (
                     <NavDropdown
                       style={{ marginBottom: '5px' }}
-                      title="Profile"
+                      title="Menu"
                       id={`offcanvasNavbarDropdown-expand-${expand}`}
                     >
                       <NavDropdown.Item href="/login">
@@ -66,7 +95,33 @@ function Navigation(props) {
                     </NavDropdown>
                   )}
                 </Nav>
-                {isBookings ? 
+                {/* New button for listing bikes */}
+                {isLoggedIn ? 
+                <Button  
+                  as={Link} 
+                  to= "/"  // This needs to be configured when listings option available
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  List My Bike
+                </Button> : 
+                  <Button 
+                  as={Link} 
+                  to="/register"
+                  variant="dark" 
+                  style={{ marginRight: '10px', marginBottom: "5px"}}>
+                  Sign Up!
+                </Button>
+                }
+                {/* <Button
+                  onClick={() => {
+                    console.log(localStorage.getItem('user'));
+                    console.log(typeof localStorage.getItem('user')); 
+                  }}
+                >
+                  Random Button
+                </Button> */}
+                {/* Original code before decision to add bookings to dropdown */}
+                {/* {isBookings ? 
                 (<Button 
                   as={Link} 
                   to={"/"} 
@@ -80,7 +135,7 @@ function Navigation(props) {
                   variant="dark" 
                   style={{ marginRight: '10px', marginBottom: "5px"}}>
                   Manage Bookings
-                </Button>)}
+                </Button>)} */}
                 <NavDropdown.Divider />
                 {/* <Button as={Link} to=""variant="outline-dark" style={{ marginRight: '10px', marginBottom: "5px" }}>Rent out your bike!</Button> */}
               </Offcanvas.Body>
