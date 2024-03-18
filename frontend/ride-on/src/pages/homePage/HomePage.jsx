@@ -4,6 +4,8 @@ import Hero from '../../components/hero/Hero';
 import Features from '../../components/features/Features';
 import Fleet from '../../components/fleet/Fleet';
 import Footer from '../../components/footer/Footer';
+import About from '../../components/about/About';
+import UserListings from '../../components/userListings/UserListings';
 
 const HomePage = () => {
   return (
@@ -12,6 +14,8 @@ const HomePage = () => {
         <Hero/> 
         <Fleet />
         <Features />
+        <About />
+        <UserListings />
         <Footer />
     </>
   )
