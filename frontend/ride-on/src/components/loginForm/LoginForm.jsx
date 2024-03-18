@@ -69,6 +69,8 @@ function LoginForm() {
           >
             Submit
           </Button>
+          <hr/>
+          <a href="/register">Don't have an account? Register here.</a>
         </Form>
       </Row>
     </Container>

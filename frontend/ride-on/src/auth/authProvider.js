@@ -55,7 +55,6 @@ export default function AuthProvider({ children }) {
                 setToken("");
                 localStorage.removeItem('site');
                 localStorage.removeItem('user');
-                alert(responseData.message); 
                 navigate('/login');
                 return;
             }

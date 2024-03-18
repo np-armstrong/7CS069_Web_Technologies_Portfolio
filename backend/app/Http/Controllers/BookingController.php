@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class BookingController extends Controller
 {
     public function index(Request $request)
-    {   
+    { 
         //Return a collection of bookings
         return new BookingCollection(Booking::all());
     }
@@ -57,9 +57,8 @@ class BookingController extends Controller
 
     }
 
-    public function search(Request $request)
+    public function userbookings($search)
     {
-        //Get the search term param
-        
+        return Booking::where("username", $search)->get();
     }
 }
