@@ -7,11 +7,11 @@ function About(){
     <>
         <Container fluid className='aboutContainer'> 
             <Row>
-                <Col >
+                <Col xs={12} md={6} lg={4}>
                     <Image src='../assets/se-shape.png' alt='' className='motocross-image' fluid/>
                 </Col>
                     
-                <Col  className='text-column'>
+                <Col xs={12} md={6} lg={8} className='text-column'>
                     <div className="text-container">
                         <h2>By Riders, For Riders.</h2>
                         <p>
