@@ -1,4 +1,4 @@
-.ctaHeading{
+/* .ctaHeading{
     color: white;
 }
 
@@ -10,7 +10,6 @@
     position: relative;
 }
 
-/* This adds an overlay on top of the image that darkens it to make the text pop */
 .heroBackground::before {
     content: "";
     position: absolute;
@@ -23,7 +22,6 @@
 
 
 
-/* object-fit cover has allowed the image to not distort when manipulated */
 .heroImg{
     width: 100%;
     margin: 0;
@@ -37,17 +35,13 @@
     left: 50%;
     width: 70vw;
     transform: translate(-50%, -50%);
-    /* background-color: rgba(219, 219, 219, 0.3); */
     border-radius: 20px;
     padding: 20px;
-    /* opacity: 0.4; */
     font-size: 50px;
     text-align: center;
-    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4); */
 }
 
 .heading{
-    /* font-size: 50px; */
     font-weight: bold;
     color: white;
     text-align: centre;
@@ -59,15 +53,38 @@
 }
 
 .subheading{
-    /* font-size: 30px; */
     font-weight: bold;
     color: white;
     text-align: center;
     margin: 10;
     padding: 10px;
     opacity: 1;
+} */
+
+/* NEW STYLES */
+
+.heroContainer{
+    padding-top: 100px;
+    padding-bottom: 20px;
+    /* background-color: #f5f5f5; */
+    background-color: #e5e5f7;
+    opacity: 1;
+    background: repeating-linear-gradient( 45deg, #8f8f8f, #8f8f8f 5px, #ffffff 5px, #ffffff 25px );
+    z-index: 1;
 }
 
-
+.hero-text-column{
+    /* width: 40%; */
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: #1d1d1d;
+    border-style: solid;
+    border-radius: 5px;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: auto;
+}
 
 

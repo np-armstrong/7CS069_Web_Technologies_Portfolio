@@ -6,7 +6,8 @@ import './userListings.css';
 const bikes = [
     {
         id: 1,
-        username: "user1",
+        username: "Dave86",
+        location: "Wolverhampton",
         make: "Honda",
         model: "XR250",
         engine: 250,
@@ -16,7 +17,8 @@ const bikes = [
     },
     {
         id: 2,
-        username: "user2",
+        username: "PhilBiker24",
+        location: "Manchester",
         make: "Yamaha",
         model: "YZ250",
         engine: 250,
@@ -26,7 +28,8 @@ const bikes = [
     },
     {
         id: 3,
-        username: "user3",
+        username: "DanTheMan",
+        location: "Nottingham",
         make: "Kawasaki",
         model: "KX250",
         engine: 250,
@@ -53,6 +56,9 @@ function UserListings() {
             <Col key={index}>
               <BikeCard 
               key={index}
+              userBike={true}
+              owner={bike.username}
+              location={bike.location} 
               make={bike.make}
               model={bike.model}
               engine={bike.engine}

@@ -11,6 +11,7 @@ class UserListing extends Model
 
     protected $fillable = [
         'username',
+        'location',
         'make',
         'model',
         'engine',

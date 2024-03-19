@@ -42,6 +42,7 @@ const Fleet = () => {
           return (  
             <Col key={index}>
               <BikeCard 
+              location={"Nationwide"}
               key={index}
               make={bike.make}
               model={bike.model}

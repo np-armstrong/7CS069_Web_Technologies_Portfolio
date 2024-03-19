@@ -34,4 +34,5 @@ TODO: Take screenshots upon completion to demonstrate how the app works
 
 ## Acknowledgements
 
+icons by: https://icons8.com/ 
 cottonbro studio: https://www.pexels.com/photo/man-repairing-a-motorcycle-5803320/

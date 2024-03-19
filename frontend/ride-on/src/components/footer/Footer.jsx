@@ -22,9 +22,11 @@ const date = new Date().getFullYear();
             </Col>
             <Col xs={12} md={4} className="column">
                 <h4>Resources</h4>
-                <li><a target="_blank" href="https://icons8.com/icon/G7xxWUssqjYw/us-dollar-circled">Us Dollar Circled</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
+                {/* <li><a target="_blank" href="https://icons8.com/icon/G7xxWUssqjYw/us-dollar-circled">Us Dollar Circled</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
                 <li><a target="_blank" href="https://icons8.com/icon/9376/engine">Engine</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
-                <li><a target="_blank" href="https://icons8.com/icon/112254/gearbox">Gearbox</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
+                <li><a target="_blank" href="https://icons8.com/icon/112254/gearbox">Gearbox</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li> */}
+                <li>Icons by: <a href="https://icons8.com"></a>Icons8</li>
+                <li>Images by: <a href="https://pexels.com">pexels</a></li> 
             </Col>
 
         </Row>

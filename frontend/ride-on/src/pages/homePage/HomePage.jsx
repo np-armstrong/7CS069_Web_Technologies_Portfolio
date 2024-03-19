@@ -12,8 +12,8 @@ const HomePage = () => {
     <>
         <Navigation isBookings={false}/>
         <Hero/> 
-        <Fleet />
         <Features />
+        <Fleet />
         <About />
         <UserListings />
         <Footer />

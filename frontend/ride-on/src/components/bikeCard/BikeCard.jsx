@@ -15,6 +15,7 @@ function BikeCard(props) {
   const transmission = props.transmission;
   const dayRate = props.dayRate;
   const image = props.url;
+  const userBike = props.userBike;
   // const key = props.key;
 
   // const handleClick = (e) => {
@@ -28,7 +29,12 @@ function BikeCard(props) {
           <Card.Img variant="top" src={props.url} className='cardImg'/>
           <Card.Body>
             <Card.Title>{`${props.make} ${props.model}`}</Card.Title>
+            {userBike ? <Card.Text>Owned by: {props.owner}</Card.Text> : null}
             <div className="stats-container">
+                <div className='bike-stats'>
+                  <img src="./assets/icons/location.png"/>
+                  <li className='bike-stat'>{`${props.location}`}</li>
+                </div>
                 <div className='bike-stats'>
                   <img src="./assets/icons/engine.png"/>
                   <li className='bike-stat'>{`${props.engine} cc`}</li>
