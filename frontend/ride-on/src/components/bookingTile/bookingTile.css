@@ -19,13 +19,13 @@
 }
 
 .img-container img{
-    /* width: 100px;
-    height: 100px; */
-    width: 90%;
+    height: 100px; 
+    width: 100px;
     max-width: 200px;
     border-radius: 50%;
     border-color: black;
     border-style: solid;
+    object-fit: cover;
 }
 
 .booking-details{

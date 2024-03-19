@@ -2,6 +2,7 @@ import React from 'react'
 import './bikeCard.css'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import CardImg from 'react-bootstrap/CardImg';
 import { CurrencyDollar } from 'react-bootstrap-icons';
 import { Router } from 'react-router-dom';
 import CreateModal from '../createModal/CreateModal';
@@ -16,15 +17,15 @@ function BikeCard(props) {
   const image = props.url;
   // const key = props.key;
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log('The link was clicked.');
-  }
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   console.log('The link was clicked.');
+  // }
   
     return (
       <div className='bike-card'>
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={props.url} />
+          <Card.Img variant="top" src={props.url} className='cardImg'/>
           <Card.Body>
             <Card.Title>{`${props.make} ${props.model}`}</Card.Title>
             <div className="stats-container">
