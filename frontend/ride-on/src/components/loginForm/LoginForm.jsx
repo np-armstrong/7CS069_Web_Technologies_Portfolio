@@ -37,6 +37,7 @@ function LoginForm() {
     <Container className='loginContainer'>
       <Row>
         <Form className='loginForm'>
+          <h4>Login</h4>
           <Form.Group className="mb-3 sm" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control 

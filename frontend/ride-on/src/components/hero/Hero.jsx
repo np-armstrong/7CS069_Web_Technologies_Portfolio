@@ -18,7 +18,7 @@ function Hero () {
                                 variant="success" 
                                 size="md" 
                                 className="Sign Up"
-                                href="/"
+                                href="/register"
                                 >
                                     Sign Up
                                 </Button>
