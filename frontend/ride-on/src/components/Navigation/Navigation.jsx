@@ -72,12 +72,11 @@ function Navigation(props) {
                         My Bookings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action4">
+                      <NavDropdown.Item href="/mylistings">
                         My Listings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item 
-                        href="#action5"
                         onClick={auth.logoutAction}
                       >
                         Logout
@@ -99,7 +98,7 @@ function Navigation(props) {
                 {isLoggedIn ? 
                 <Button  
                   as={Link} 
-                  to= "/"  // This needs to be configured when listings option available
+                  to= "/mylistings"  // This needs to be configured when listings option available
                   variant="dark" 
                   style={{ marginRight: '10px', marginBottom: "5px"}}>
                   List My Bike

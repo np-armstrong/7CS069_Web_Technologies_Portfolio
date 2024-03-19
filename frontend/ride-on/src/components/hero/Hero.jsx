@@ -10,18 +10,18 @@ function Hero () {
         <>  
             <Container fluid className='heroContainer'> 
                 <Row>        
-                    <Col xs={11} md={6} lg={5} className='hero-text-column'>
+                    <Col xs={11} md={5} lg={5} className='hero-text-column'>
                         <div className="text-container">
-                            <h1>Embrace the <strong className='adventure'>Adventure.</strong></h1>
+                            <h1>Embrace the <strong className='adventure'>Adventure</strong>.</h1>
                             <h4>Find the perfect bike for your next journey, <strong>hassle-free rentals from riders, for riders.</strong></h4>
                             <Button 
                                 variant="success" 
                                 size="md" 
                                 className="Sign Up"
                                 href="/register"
-                                >
-                                    Sign Up
-                                </Button>
+                            >
+                                Sign Up
+                            </Button>
                         </div>
                     </Col>
                     <Col xs={12} md={6} lg={5} className='image-column'>

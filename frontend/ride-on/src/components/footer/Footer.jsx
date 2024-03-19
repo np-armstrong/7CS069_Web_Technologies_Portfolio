@@ -24,6 +24,7 @@ const date = new Date().getFullYear();
                 <h4>Resources</h4>
                 <li>Icons by: <a href="https://icons8.com">Icons8</a></li>
                 <li>Images by: <a href="https://pexels.com">pexels</a></li> 
+                <li>CSS Backgrounds by: <a href="https://10015.io/tools/css-background-pattern-generator">10015</a></li>
             </Col>
 
         </Row>
