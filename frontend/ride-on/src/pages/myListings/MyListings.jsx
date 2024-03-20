@@ -4,12 +4,14 @@ import { Col, Container, Row, Button } from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
 import './myListings.css'
 import BikeCard from '../../components/bikeCard/BikeCard'
-import BookingTile from '../../components/bookingTile/BookingTile'
+import ListingTile from '../../components/listingTile/ListingTile.jsx'
+import CreateListing from '../../components/createListing/CreateListing.jsx'
 
 const dummyData = [
     {
         id: 1,
         username: "JohnDoe",
+        location: "London",
         make: "Honda",
         model: "Winner-x",
         engine: 150,
@@ -20,6 +22,7 @@ const dummyData = [
     {
         id: 2,
         username: "JohnDoe",
+        location: "London",
         make: "Honda",
         model: "CBR-150",
         engine: 150,
@@ -28,6 +31,8 @@ const dummyData = [
         image: "./assets/xr250.jpeg"
     },
 ]
+
+//!! TODO - Add authentication to this page
 
 function MyListings() {
   return (
@@ -46,18 +51,15 @@ function MyListings() {
                 <Carousel data-bs-theme="light" className='garage-slides'>
                     {dummyData.map((bike, index) => {
                         return (
-                            <Carousel.Item key={index} className='carousel-item' interval={10000}>
+                            <Carousel.Item key={index} className='carousel-item' interval={100000}>
                                 <img
                                 className="d-block w-100"
                                 src={bike.image}
                                 alt="First slide"
                                 />
-                                {/* <Carousel.Caption className='bike-information'>
+                                <Carousel.Caption className='bike-information'>
                                 <h6>{bike.make} {bike.model}</h6>
-                                {/* <p>Engine: {bike.engine}cc</p>
-                                <p>Transmission: {bike.transmission}</p>
-                                <p>Day Rate: £{bike.dayRate}</p> 
-                                </Carousel.Caption> */}
+                                </Carousel.Caption>
                             </Carousel.Item>
                         )
                     })}
@@ -73,10 +75,11 @@ function MyListings() {
                 <hr/>
                 {dummyData.map((bike, index) => {
                     return(
-                        <BookingTile key={index}
+                        <ListingTile key={index}
+                            id={bike.id}
+                            location={bike.location}
                             make={bike.make}
-                            model={bike.model}
-                            engine={bike.engine}
+                            model={bike.model}    
                             dayRate={bike.dayRate}
                             image={bike.image}
                         />
@@ -93,9 +96,10 @@ function MyListings() {
             </div>
             <div className="add-new-button">
                 {/* TODO: Replace with a Modal */}
-                <Button size='lg' className='listing-button' variant='outline-dark'>
+                {/* <Button size='lg' className='listing-button' variant='outline-dark'>
                     New Listing
-                </Button> 
+                </Button>  */}
+                <CreateListing className="add-new-button"/>
             </div>
         </Container> 
     </>
