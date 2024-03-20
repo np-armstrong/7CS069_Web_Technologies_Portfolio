@@ -22,7 +22,7 @@ const Fleet = () => {
       } catch (error) {
         console.error('Error fetching bikes:', error);
         // Handle errors (e.g., display an error message)
-        alert('Error fetching bikes', error);
+        //alert('Error fetching bikes', error);
       }
     };
 
