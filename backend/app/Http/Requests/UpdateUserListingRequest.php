@@ -11,7 +11,7 @@ class UpdateUserListingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateUserListingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'username' => ['sometimes', 'required', 'string', 'max:255'],
+            'location' => ['sometimes', 'required', 'string', 'max:255'],
+            'make' => ['sometimes', 'required', 'string', 'max:255'],
+            'model' => ['sometimes', 'required', 'string', 'max:255'],
+            'engine' => ['sometimes', 'required', 'integer'],
+            'transmission' => ['sometimes', 'required', 'string', 'max:255'],
+            'image_url' => ['sometimes', 'required', 'string', 'max:255'],
+            'day_rate' => ['sometimes', 'required', 'numeric'],
         ];
     }
 }

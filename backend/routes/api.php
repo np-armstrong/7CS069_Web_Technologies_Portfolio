@@ -28,14 +28,15 @@ Route::apiResource('bookings', BookingController::class)->only([
 
 Route::get('userbookings/{search}', [BookingController::class, 'userbookings']);//->middleware('auth:sanctum'); //This route is protected by the sanctum middleware
 
-Route::apiResource('userlistings', UserListingController::class)->only([
-    'index', 'store', 'update', 'destroy'
-]);
+Route::apiResource('user_listings', UserListingController::class)->only([
+    'store', 'show', 'update', 'destroy'
+]); //TODO: Protect with sanctum 
+
+Route::get('user_listings', [UserListingController::class, 'index']);
+
+Route::get('userlistings/{search}', [UserListingController::class, 'userlistings']);//->middleware('auth:sanctum'); 
 
 Route::apiResource('bikes', BikesController::class)->only([
     'index'
 ]);
 
-Route::apiResource('user-listings', UserListingController::class)->only([
-    'index', 'show', 'store', 'update', 'destroy'
-]);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserListingRequest;
+use App\Http\Requests\UpdateUserListingRequest;
 use App\Http\Resources\UserListingCollection;
 use App\Http\Resources\UserListingResource;
 use App\Models\User;
@@ -10,12 +12,17 @@ use Illuminate\Http\Request;
 
 class UserListingController extends Controller
 {
-    function index()
+    public function index()
     {
         return new UserListingCollection(UserListing::all());
     }
 
-    function store(Request $request)
+    public function show(Request $request, UserListing $userListing)
+    {
+        return new UserListingResource($userListing);
+    }
+
+    public function store(StoreUserListingRequest $request)
     {
         $validated = $request->validated(); 
         $listing = UserListing::create($validated);
@@ -23,7 +30,7 @@ class UserListingController extends Controller
         return new UserListingResource($listing);
     }
 
-    function update(Request $request, UserListing $userListing)
+    public function update(UpdateUserListingRequest $request, UserListing $userListing)
     {
         $validated = $request->validated(); 
         $userListing->update($validated);
@@ -31,14 +38,14 @@ class UserListingController extends Controller
         return new UserListingResource($userListing);
     }
 
-    function destroy(Request $request, UserListing $userListing)
+    public function destroy(Request $request, UserListing $userListing)
     {
         $userListing->delete();
 
         return response()->noContent();
     }
 
-    function userlistings($search){
+    public function userlistings($search){
         return UserListing::where("username", $search)->get(); 
     }
     

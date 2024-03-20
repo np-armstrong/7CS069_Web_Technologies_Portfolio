@@ -11,7 +11,7 @@ class StoreUserListingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class StoreUserListingRequest extends FormRequest
             'location' => ['required', 'string', 'max:255'],
             'make' => ['required', 'string', 'max:255'],
             'model' => ['required', 'string', 'max:255'],
-            'engine' => ['required', 'string', 'max:255'],
+            'engine' => ['required', 'integer'],
             'transmission' => ['required', 'string', 'max:255'],
             'image_url' => ['required', 'string', 'max:255'],
             'day_rate' => ['required', 'numeric'],
