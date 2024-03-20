@@ -10,6 +10,7 @@ class UserListingSeeder extends Seeder
     private $bikes = [
         [   
             'username' => 'DannyBoy96',
+            'location' => 'London',
             'make' => 'Honda',
             'model' => 'Zoomer-X',
             'engine' => '110',
@@ -19,6 +20,7 @@ class UserListingSeeder extends Seeder
         ],
         [
             'username' => 'JohnDoe123',
+            'location' => 'Manchester',
             'make' => 'Honda',
             'model' => 'Wave 110 S',
             'engine' => '110',
@@ -28,6 +30,7 @@ class UserListingSeeder extends Seeder
         ],
         [
             'username' => 'RubberDuck',
+            'location' => 'Birmingham',
             'make' => 'KTM',
             'model' => '390 Duke',
             'engine' => '390',

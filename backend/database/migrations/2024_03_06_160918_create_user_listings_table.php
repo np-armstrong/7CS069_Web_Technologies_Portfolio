@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user_listings', function (Blueprint $table) {
             $table->id();
             $table->string('username');
+            $table->string('location');
             $table->string('make');
             $table->string('model');
             $table->integer('engine');
