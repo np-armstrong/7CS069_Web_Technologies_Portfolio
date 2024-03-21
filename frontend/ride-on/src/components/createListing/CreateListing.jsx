@@ -139,7 +139,7 @@ function CreateListing() {
           alert('Error creating listing, please try again.');
         }
     }else{
-      alert('Please enter a location and day rate.');
+      alert('Invalid Entry: Please fill in all fields.');
     }
   }
 
