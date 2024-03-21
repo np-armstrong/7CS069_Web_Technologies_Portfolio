@@ -45,7 +45,7 @@ function BikeCard(props) {
                 </div>
                 <div className='bike-stats'>
                   <img src="./assets/icons/dollar.png"/>
-                  <li className='bike-stat'>{`$${props.dayRate}/day`}</li>
+                  <li className='bike-stat'>{`£${props.dayRate}/day`}</li>
               </div>
             </div>          
             {/* <Button variant="dark" onClick={handleClick}>Hire</Button> */}

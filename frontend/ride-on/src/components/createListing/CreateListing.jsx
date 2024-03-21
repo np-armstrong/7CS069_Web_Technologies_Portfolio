@@ -12,8 +12,16 @@ function CreateListing() {
   const [show, setShow] = useState(false);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [validated, setValidated] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const handleClose = () => {
+    setData((prevData) => ({
+      ...prevData,
+      location: '',
+      day_rate: 0
+    }));
+    setValidated(false);
+    setSaved(false);
     setShow(false)
   };
 
@@ -89,19 +97,50 @@ function CreateListing() {
     
   const [data, setData] = useState({
     username: username,
-    location: 'Wolverhampton',
+    location: '',
     make: 'Honda',
     model: 'Zoomer-x',
     engine: 110,
     transmission: 'Automatic',
-    day_rate: 25,
+    day_rate: 0,
     image_url: 'https://images.khmer24.co/23-06-06/690902-honda-zoomer-x-2020-1686055428-13672738-b.jpg'
   });
 
+  useEffect(() => {
+    if (data.location.length > 0 && data.day_rate > 0){
+      return setValidated(true);
+    } else {
+      return setValidated(false);
+    }
+  });
 
-
-  function handleSubmit(){
-    console.log(data);
+  async function handleSubmit(){
+    //checkValidation();
+    if (validated){
+      // console.log('data validated');
+      // console.log(data);
+      try{
+        const response = await fetch('/api/user_listings/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok){
+          console.log('Listing created');
+          setSaved(true);
+          // alert('Listing created');
+        }
+        return response;
+      } catch (error){
+          console.error('Error:', error);
+          alert('Error creating listing, please try again.');
+        }
+    }else{
+      console.log('data not validated');
+    }
   }
 
   return (
@@ -114,19 +153,24 @@ function CreateListing() {
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          {!saved ? <Modal.Body>
             <h3>Create Listing</h3>
             <div className="user-img-container">
               <Image src={data.image_url} roundedCircle className='user-listing-img'/>
             </div>
             <Form>
-              <Form.Group>
+              <Form.Group controlId='validationCustom01' noValidate>
                 <Form.Label>Location</Form.Label>
                 <Form.Control 
+                  required
                   type="text" 
                   placeholder="Location"
                   onChange={handleLocationChange}
+                  isValid={data.location.length > 0}
+                  isInvalid={data.location.length === 0}
                 />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Location Required</Form.Control.Feedback>
                 {/* TODO: Add validation */}
               </Form.Group>
               <Form.Group>
@@ -137,26 +181,40 @@ function CreateListing() {
                   <option>Honda XR250</option>
                 </Form.Control>
               </Form.Group>
-              <Form.Group>
+              <Form.Group controlId='validationCustom02'>
                 <Form.Label>Day Rate (£/day)</Form.Label>
                 <Form.Control 
                   required="required"
                   type="integer" 
                   placeholder="Enter a daily rental fee in £"
                   onChange={handleDayRateChange}  
+                  isValid={data.day_rate > 0}
+                  isInvalid={data.day_rate === 0}
                 />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Day Rate Required.</Form.Control.Feedback>
+
                 {/* TODO: Add validation */}
               </Form.Group>
             </Form>
 
-          </Modal.Body>
+          </Modal.Body> : <Modal.Body>
+          <div className="booking-confirmation">
+                    <div className="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="green" className="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                        </svg>
+                    </div>
+            </div>
+            <h5 className='confirmed-message'>Listing Posted!</h5>
+        </Modal.Body>}
           <Modal.Footer>
             <Button variant="outline-dark" onClick={handleClose}>
               Close
             </Button>
-            <Button type="submit" variant="success" onClick={handleSubmit}>
+            {!saved && <Button type="submit" variant="success" onClick={handleSubmit}>
               Create Listing
-            </Button>
+            </Button>}
           </Modal.Footer>
         </Modal>
       </>

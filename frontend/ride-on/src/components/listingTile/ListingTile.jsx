@@ -4,9 +4,8 @@ import './listingTile.css';
 import EditListing from '../editListing/EditListing.jsx'; 
 import CancelListing from '../cancelListing/CancelListing.jsx';
 
-//!! TODO - Add authentication to this tile
-
 function listingTile(props){
+
   return (
     <>
         <Container key={props.index} className='listing-container'>
@@ -18,7 +17,7 @@ function listingTile(props){
                     <h5>{props.make} {props.model}</h5>
                     <hr/>
                     <p>Location: {props.location}</p>
-                    <p>Day Rate: ${props.dayRate}</p>
+                    <p>Day Rate: £{props.dayRate}</p>
                     {/* <p>{`Total: $${calculateTotalCost(props.startDate, props.endDate, props.dayRate)}`}</p> */}
                     {/* <p>Total Cost: $$$</p> */}
                 </div>
