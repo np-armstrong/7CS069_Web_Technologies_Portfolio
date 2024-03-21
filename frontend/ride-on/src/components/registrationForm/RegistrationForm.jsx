@@ -107,6 +107,7 @@ const RegistrationForm = () => {
         <Container className='registrationContainer'>
             <Row>
                 <Form className='registrationForm'>
+                <h4>Sign Up!</h4>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Group className="mb-3" controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>

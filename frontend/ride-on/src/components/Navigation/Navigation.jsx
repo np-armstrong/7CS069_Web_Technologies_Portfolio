@@ -14,6 +14,13 @@ function Navigation(props) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true); //Change to state variable later
   const [username, setUsername] = useState(""); 
+  const [isListings, setIsListings] = useState(false);
+
+  useEffect(() => {
+    if(props.isListings === true){
+      setIsListings(true);
+    }
+  })
 
   // This useEffect is used to check if the user is logged in or not
   useEffect(() => {
@@ -72,12 +79,11 @@ function Navigation(props) {
                         My Bookings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action4">
+                      <NavDropdown.Item href="/mylistings">
                         My Listings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item 
-                        href="#action5"
                         onClick={auth.logoutAction}
                       >
                         Logout
@@ -96,15 +102,18 @@ function Navigation(props) {
                   )}
                 </Nav>
                 {/* New button for listing bikes */}
-                {isLoggedIn ? 
+                {isLoggedIn && !isListings ? 
                 <Button  
                   as={Link} 
-                  to= "/"  // This needs to be configured when listings option available
+                  to= "/mylistings"  // This needs to be configured when listings option available
                   variant="dark" 
                   style={{ marginRight: '10px', marginBottom: "5px"}}>
                   List My Bike
-                </Button> : 
-                  <Button 
+                </Button> :
+                isLoggedIn && isListings ?
+                 null
+                : 
+                <Button 
                   as={Link} 
                   to="/register"
                   variant="dark" 

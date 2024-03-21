@@ -12,8 +12,8 @@ const date = new Date().getFullYear();
         <Col xs={12} md={4} className="column">
                 <h4>Support</h4>
                 <li><a href="">Help Centre</a></li>
-                <li><a href="">More Support</a></li> 
-                <li><a href="">Even More Support</a></li> 
+                <li><a href="">FAQs</a></li> 
+                <li><a href="">Contact Us</a></li> 
             </Col>
             <Col xs={12} md={4} className="column">
                 <h4>Policies</h4>
@@ -22,9 +22,9 @@ const date = new Date().getFullYear();
             </Col>
             <Col xs={12} md={4} className="column">
                 <h4>Resources</h4>
-                <li><a target="_blank" href="https://icons8.com/icon/G7xxWUssqjYw/us-dollar-circled">Us Dollar Circled</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
-                <li><a target="_blank" href="https://icons8.com/icon/9376/engine">Engine</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
-                <li><a target="_blank" href="https://icons8.com/icon/112254/gearbox">Gearbox</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></li>
+                <li>Icons by: <a href="https://icons8.com">Icons8</a></li>
+                <li>Images by: <a href="https://pexels.com">pexels</a></li> 
+                <li>CSS Backgrounds by: <a href="https://10015.io/tools/css-background-pattern-generator">10015</a></li>
             </Col>
 
         </Row>

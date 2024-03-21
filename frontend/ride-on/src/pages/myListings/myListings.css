@@ -1,0 +1,58 @@
+.carousel-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.garage-container{
+    background-image: radial-gradient(#000000 2.5px, transparent 2.5px);
+    background-size: 32px 32px;
+    background-color: #f5f5f5;
+}
+
+.garage-slides{
+    border-radius: 5px;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-item img{
+    border-radius: 10px;
+    height: 50%;
+    object-fit: fill;
+}
+
+.bike-information h6{
+    padding: 5px;
+    color: #1d1d1d;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    border: #1d1d1d;
+    border-style: solid;
+    border-width: 2.5px;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-listings-container{
+    margin-top: 25px;
+}
+
+.listing-button{
+    font-size: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 30%;
+}
+
+.add-new-button{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+}

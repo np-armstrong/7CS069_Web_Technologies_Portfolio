@@ -15,6 +15,7 @@ import Register from './pages/register/Register.jsx';
 import Login from './pages/login/Login.jsx';
 import Bookings from './pages/bookings/Bookings.jsx'; 
 import Profile from './pages/profile/Profile.jsx'; 
+import MyListings from './pages/myListings/MyListings.jsx';
 import ProtectedRoute from './auth/ProtectedRoute.jsx';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/Bookings" element={<Bookings />}/> 
             <Route path="/Profile" element={<Profile />}/>
+            <Route path='/MyListings' element={<MyListings />}/>
           </Route>
         </Routes>
       </AuthProvider>

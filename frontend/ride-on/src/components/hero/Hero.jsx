@@ -1,42 +1,60 @@
 import './hero.css';
 import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/esm/Row';
+import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/esm/Button';
-import { Link } from 'react-router-dom';
-
+import Image from 'react-bootstrap/esm/Image';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../../auth/authProvider.js';
 
 function Hero () {
 
+    const auth = useAuth();
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => { 
+        if (auth.token === "") {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+        }
+    })
 
     return (
         <>  
-                <Container fluid>
-                    <Row>
-                        <div className="heroBackground">
-                            <img src="./assets/moto.jpg" alt="Picture of motorcyclist riding through the mountains" className="heroImg" />
-                        </div>
-                        
-
-                        <div className="heroTextContainer">
-                            <div className="heroText">                    
-                                <h1 className='heading'>Embrace the Adventure</h1>
-                                <h4 className='subheading'>Find the perfect bike for your next journey, hassle-free rentals from riders, for riders.</h4>
-                            </div>                        
-                            <Button 
-                                variant="light" 
-                                size="lg" 
+            <Container fluid className='heroContainer'> 
+                <Row>        
+                    <Col xs={11} md={5} lg={5} className='hero-text-column'>
+                        <div className="text-container">
+                            <h1>Embrace the <strong className='adventure'>Adventure</strong>.</h1>
+                            <h4>Find the perfect bike for your next journey, <strong>hassle-free rentals from riders, for riders.</strong></h4>
+                            {!isLoggedIn ? <Button 
+                                variant="success" 
+                                size="md" 
                                 className="Sign Up"
-                                as={Link}
-                                to="/register"
+                                href="/register"
+                            >
+                                Sign Up
+                            </Button> : 
+                            <div>
+                                <p>Did you know you can rent out your motorcycle with Ride-On?</p>
+                                <Button
+                                    variant='outline-success'
+                                    size='md'
+                                    className='List-bike'
+                                    href='/mylistings'
                                 >
-                                    Sign Up
+                                List My Hog!
                                 </Button>
-
+                            </div>}
                         </div>
+                    </Col>
+                    <Col xs={12} md={6} lg={5} className='image-column'>
+                        <Image src='../assets/rider-shape-3.png' alt='' className='motocross-image' fluid/>
+                    </Col>
+                </Row>
+            </Container>
 
-                    </Row>    
-                </Container>
         </>
     )
 }

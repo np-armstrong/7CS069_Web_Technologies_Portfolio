@@ -18,10 +18,10 @@ const BookingTile = (props) => {
                     <hr/>
                     <p>Start Date: {props.startDate}</p>
                     <p>End Date: {props.endDate}</p>
-                    <p>Day Rate: ${props.dayRate}</p>
+                    <p>Day Rate: £{props.dayRate}</p>
                     {/* <p>{`Total: $${calculateTotalCost(props.startDate, props.endDate, props.dayRate)}`}</p> */}
                     {/* <p>Total Cost: $$$</p> */}
-                    <p>Total Cost: ${props.total}</p>
+                    <p>Total Cost: £{props.total}</p>
                 </div>
                 <div className="booking-controls">                   
                     {/* This is our new modal allowing us to pass map data to it */}

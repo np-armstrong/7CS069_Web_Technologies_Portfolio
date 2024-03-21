@@ -26,12 +26,17 @@ Route::apiResource('bookings', BookingController::class)->only([
     'index', 'show', 'store', 'update', 'destroy'
 ])->middleware('auth:sanctum'); 
 
-Route::get('userbookings/{search}', [BookingController::class, 'userbookings']);//->middleware('auth:sanctum'); //This route is protected by the sanctum middleware
+Route::get('userbookings/{search}', [BookingController::class, 'userbookings'])->middleware('auth:sanctum'); //This route is protected by the sanctum middleware
+
+Route::apiResource('user_listings', UserListingController::class)->only([
+    'store', 'show', 'update', 'destroy'
+])->middleware('auth:sanctum');
+
+Route::get('user_listings', [UserListingController::class, 'index']);
+
+Route::get('userlistings/{search}', [UserListingController::class, 'userlistings'])->middleware('auth:sanctum'); 
 
 Route::apiResource('bikes', BikesController::class)->only([
     'index'
 ]);
 
-Route::apiResource('user-listings', UserListingController::class)->only([
-    'index', 'show', 'store', 'update', 'destroy'
-]);

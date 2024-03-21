@@ -1,4 +1,4 @@
-.booking-container{
+.listing-container{
     margin-top: 10px;
     align-items: center;
     padding: 5px;
@@ -8,7 +8,7 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
-.booking{
+.listing{
     padding: 5px;
     display: grid;
     grid-template-columns: 0.5fr 2fr .5fr; 
@@ -28,14 +28,14 @@
     object-fit: cover;
 }
 
-.booking-details{
+.listing-details{
     display: flex-end;
     flex-direction: column;
     justify-content: center;
     margin-left: 10px;
 }
 
-.booking-controls{
+.listing-controls{
     justify-content: space-around;
     padding-left: 20px;
     display: grid;
@@ -45,10 +45,10 @@
 }
 
 
-.booking-details h5{
+.listing-details h5{
     margin: 0;
 }
 
-.booking-details p{
+.listing-details p{
     margin: 0;
 }

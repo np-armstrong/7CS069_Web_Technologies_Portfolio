@@ -3,20 +3,24 @@
     padding-top: 50px;
     background-color: #FF5733;
     margin-bottom: 0px;
+    justify-content: center;
+    align-items: center;
 }
 
 .column{
     margin-top: 20px;
+    padding: 20px;
 }
 
 .copyright {
     color: white;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .footer-container h4 {
     color: white;
+    text-decoration: underline;
 }
 
 .column li{
