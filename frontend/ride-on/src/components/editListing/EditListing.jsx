@@ -78,7 +78,11 @@ function EditListing(props){
                   placeholder="Enter location" 
                   value={data.location}
                   onChange={handleNewLocation}
+                  isValid={data.location.length > 2}
+                  isInvalid={data.location.length === 0}  
                 />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Location Required</Form.Control.Feedback>
               </Form.Group>
               <Form.Group controlId="formBasicDayRate">
                 <Form.Label>Day Rate (£/day)</Form.Label>
@@ -87,7 +91,11 @@ function EditListing(props){
                   placeholder="Enter day rate" 
                   value={data.day_rate}
                   onChange={handleNewRate}
+                  isValid={data.day_rate > 0}
+                  isInvalid={data.day_rate === 0 || data.day_rate === '' || data.day_rate === null}
                 />
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">Day Rate Required.</Form.Control.Feedback>
               </Form.Group>
             </Form>
           </Modal.Body> : 

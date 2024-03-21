@@ -166,7 +166,7 @@ function CreateListing() {
                   type="text" 
                   placeholder="Enter the city where your bike is kept."
                   onChange={handleLocationChange}
-                  isValid={data.location.length > 0}
+                  isValid={data.location.length > 2}
                   isInvalid={data.location.length === 0}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -189,7 +189,7 @@ function CreateListing() {
                   placeholder="Enter a daily rental fee in £"
                   onChange={handleDayRateChange}  
                   isValid={data.day_rate > 0}
-                  isInvalid={data.day_rate === 0}
+                  isInvalid={data.day_rate === 0 || data.day_rate === '' || data.day_rate === null}
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Day Rate Required.</Form.Control.Feedback>
