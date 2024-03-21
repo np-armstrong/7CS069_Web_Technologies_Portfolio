@@ -10,7 +10,7 @@ import CreateListing from '../../components/createListing/CreateListing.jsx'
 function MyListings() {
 
     const[listings, setListings] = useState([])
-    const[token, setToken] = useState(localStorage.getItem('token') || "");
+    const[token, setToken] = useState(localStorage.getItem('site') || "");
     const[user, setUser] = useState(localStorage.getItem('user') || "");
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function MyListings() {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        // Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${token}`
                     },
                 });
                 const data = await response.json();

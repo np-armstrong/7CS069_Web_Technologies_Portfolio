@@ -9,7 +9,7 @@ import './createListing.css';
 function CreateListing() {
 
   const [show, setShow] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('token') || '');
+  const [token, setToken] = useState(localStorage.getItem('site') || '');
   const [validated, setValidated] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -123,7 +123,8 @@ function CreateListing() {
         const response = await fetch('/api/user_listings/', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify(data)
         });

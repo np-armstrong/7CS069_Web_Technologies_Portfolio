@@ -7,6 +7,7 @@ import './cancelListing.css';
 
 function CancelListing(props){
     const [show, setShow] = useState(false);
+    const [token, setToken] = useState(localStorage.getItem('site') || '');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -16,7 +17,8 @@ function CancelListing(props){
         const response = await fetch(`/api/user_listings/${props.id}`, {
           method: 'DELETE',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
           }
         });
         if (response.ok) {
@@ -26,6 +28,7 @@ function CancelListing(props){
 
       } catch(error){
         console.error('Error deleting listing:', error);
+        alert('Error deleting listing:', error);
       }
     }
 

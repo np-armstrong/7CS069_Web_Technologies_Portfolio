@@ -8,6 +8,7 @@ function EditListing(props){
     const [show, setShow] = useState(false);
     const [saved, setSaved] = useState(false);
     const [validated, setValidated] = useState(false);
+    const [token, setToken] = useState(localStorage.getItem('site') || '');
 
     useEffect(() => {
       if(data.location.length > 2 && data.day_rate > 0){
@@ -55,6 +56,7 @@ function EditListing(props){
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(data)});
             const responseJson = await response.json();
