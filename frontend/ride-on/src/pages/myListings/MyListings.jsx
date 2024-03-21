@@ -36,7 +36,9 @@ function MyListings() {
     return (
         <>
             {/* TODO: Add a prop to navigation to remove the list my bike from this page */}
-            <Navigation/> 
+            <Navigation 
+                isListings={true}
+            /> 
             <Container className='garage-header'>
             <div className="header">        
                 <h1>My Garage</h1>

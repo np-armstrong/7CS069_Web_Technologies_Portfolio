@@ -21,7 +21,8 @@ function CreateListing() {
     }));
     setValidated(false);
     setSaved(false);
-    setShow(false)
+    setShow(false);
+    window.location.reload();
   };
 
   const auth = useAuth();

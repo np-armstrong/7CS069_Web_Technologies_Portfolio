@@ -40,13 +40,8 @@ function listingTile(props){
                     {/* <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button> */}
                     <CancelListing
                       id={props.id}
-                      make={props.make}
-                      model={props.model}
-                      listingId={props.id}
-                      dayRate={props.dayRate}
-                      startDate={props.startDate}
-                      endDate={props.endDate}
-                      total={props.total}
+                      bike={`${props.make} ${props.model}`}
+                      image_url={props.image}
                     />
                 </div>
             </div>    
