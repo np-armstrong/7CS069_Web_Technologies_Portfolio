@@ -3,8 +3,22 @@ import Container from 'react-bootstrap/esm/Container';
 import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/esm/Button';
 import Image from 'react-bootstrap/esm/Image';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../../auth/authProvider.js';
 
 function Hero () {
+
+    const auth = useAuth();
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => { 
+        if (auth.token === "") {
+            setIsLoggedIn(false);
+        } else {
+            setIsLoggedIn(true);
+        }
+    })
 
     return (
         <>  
@@ -14,14 +28,25 @@ function Hero () {
                         <div className="text-container">
                             <h1>Embrace the <strong className='adventure'>Adventure</strong>.</h1>
                             <h4>Find the perfect bike for your next journey, <strong>hassle-free rentals from riders, for riders.</strong></h4>
-                            <Button 
+                            {!isLoggedIn ? <Button 
                                 variant="success" 
                                 size="md" 
                                 className="Sign Up"
                                 href="/register"
                             >
                                 Sign Up
-                            </Button>
+                            </Button> : 
+                            <div>
+                                <p>Did you know you can rent out your motorcycle with Ride-On?</p>
+                                <Button
+                                    variant='outline-success'
+                                    size='md'
+                                    className='List-bike'
+                                    href='/mylistings'
+                                >
+                                List My Hog!
+                                </Button>
+                            </div>}
                         </div>
                     </Col>
                     <Col xs={12} md={6} lg={5} className='image-column'>

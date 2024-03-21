@@ -6,7 +6,6 @@ import { Form, Col, Row, Image } from 'react-bootstrap';
 import { useAuth } from '../../auth/authProvider.js';
 import './createListing.css';
 
-
 function CreateListing() {
 
   const [show, setShow] = useState(false);
@@ -164,7 +163,7 @@ function CreateListing() {
                 <Form.Control 
                   required
                   type="text" 
-                  placeholder="Location"
+                  placeholder="Enter the city where your bike is kept."
                   onChange={handleLocationChange}
                   isValid={data.location.length > 0}
                   isInvalid={data.location.length === 0}

@@ -6,7 +6,14 @@ import CancelListing from '../cancelListing/CancelListing.jsx';
 
 function listingTile(props){
 
+  // const id = props.id;
+  // const make = props.make;
+  // const model = props.model;
+  // const dayRate = props.dayRate;
+  // const location = props.location;
+
   return (
+    
     <>
         <Container key={props.index} className='listing-container'>
             <div className="listing">
@@ -26,14 +33,13 @@ function listingTile(props){
                     <EditListing
                       id={props.id}
                       bike={`${props.make} ${props.model}`}
-                      startDate={props.startDate}
-                      endDate={props.endDate}
-                      dayRate={props.dayRate}
-                      total={props.total}
+                      location={props.location}
+                      day_rate={props.dayRate}
                     />
                     {/* TODO: Create Listingto handle deletion */}
                     {/* <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button> */}
                     <CancelListing
+                      id={props.id}
                       make={props.make}
                       model={props.model}
                       listingId={props.id}

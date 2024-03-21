@@ -3,6 +3,14 @@ import { Col, Container, Row, Image, Button } from 'react-bootstrap';
 import './about.css';
  
 function About(){
+
+    function handleClick(){
+        if (localStorage.getItem('token') === ""){
+            window.location.href = "/register";
+        }else {
+            window.location.href = "/mylistings";
+        }
+    }
   return (
     <>
         <Container fluid className='aboutContainer'> 
@@ -25,7 +33,7 @@ function About(){
                             variant="outline-success" 
                             size="md" 
                             className="Sign Up"
-                            href="/"
+                            onClick={handleClick}
                             >
                                 List My Bike
                             </Button>
