@@ -107,7 +107,7 @@ function CreateListing() {
   });
 
   useEffect(() => {
-    if (data.location.length > 0 && data.day_rate > 0){
+    if (data.location.length > 2 && data.day_rate > 0){
       return setValidated(true);
     } else {
       return setValidated(false);
@@ -139,7 +139,7 @@ function CreateListing() {
           alert('Error creating listing, please try again.');
         }
     }else{
-      console.log('data not validated');
+      alert('Please enter a location and day rate.');
     }
   }
 

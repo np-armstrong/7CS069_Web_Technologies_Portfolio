@@ -1,13 +1,21 @@
-import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useAuth } from '../../auth/authProvider.js';
 
 function EditListing(props){
     const [show, setShow] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [validated, setValidated] = useState(false);
+
+    useEffect(() => {
+      if(data.location.length > 2 && data.day_rate > 0){
+        setValidated(true);
+      } else {
+        setValidated(false);
+      }
+    });
 
     const handleClose = () => {
       setShow(false)
@@ -41,21 +49,25 @@ function EditListing(props){
 
     async function handleSubmit(e){
       e.preventDefault();
-      try{
-        const response = await fetch(`api/user_listings/${props.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)});
-          const responseJson = await response.json();
-          if(response.ok){
-            console.log('Successfully sent data: ', responseJson);
-            setSaved(!saved);
-          }
-          return responseJson;
-      } catch(error){
-        console.error('Error:', error);
+      if(validated){  
+        try{
+          const response = await fetch(`api/user_listings/${props.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)});
+            const responseJson = await response.json();
+            if(response.ok){
+              console.log('Successfully sent data: ', responseJson);
+              setSaved(!saved);
+            }
+            return responseJson;
+        } catch(error){
+          console.error('Error:', error);
+        }
+      } else {
+        alert('Invalid Entry: Please fill in all fields.');
       }
     }
 
