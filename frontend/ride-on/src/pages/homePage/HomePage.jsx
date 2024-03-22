@@ -6,8 +6,11 @@ import Fleet from '../../components/fleet/Fleet';
 import Footer from '../../components/footer/Footer';
 import About from '../../components/about/About';
 import UserListings from '../../components/userListings/UserListings';
+import { useEffect, useState } from 'react'
+
 
 const HomePage = () => {
+
   return (
     <>
         <Navigation isBookings={false}/>
@@ -15,7 +18,7 @@ const HomePage = () => {
         <Features />
         <Fleet />
         <About />
-        <UserListings />
+        <UserListings/>
         <Footer />
     </>
   )

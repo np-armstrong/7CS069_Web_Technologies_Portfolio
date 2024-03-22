@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useAuth } from '../../auth/authProvider.js';
 
-function EditListing(props){
+function EditListing(props, {refreshKey, setRefreshKey}){
     const [show, setShow] = useState(false);
     const [saved, setSaved] = useState(false);
     const [validated, setValidated] = useState(false);
@@ -19,12 +19,16 @@ function EditListing(props){
     });
 
     const handleClose = () => {
-      setShow(false)
-      setSaved(false)
+      setShow(false);
+      setSaved(false);
+      //setRefreshKey(refreshKey + 1);
       window.location.reload();
     };
 
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+      setShow(true)
+      //console.log(refreshKey)
+    };
     
     const[data, setData] = useState({
       location: props.location,

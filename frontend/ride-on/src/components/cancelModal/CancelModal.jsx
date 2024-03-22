@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export default function CancelModal(props) {
+function CancelModal(props) {
+   
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -34,16 +35,17 @@ export default function CancelModal(props) {
 
         if(response.status === 204){
             console.log('Record deleted', data);
-            window.location.reload();
         }
     }
 
     function handleDelete(){
-        destroy(`/api/bookings/${id}`)
+      destroy(`/api/bookings/${id}`);
+      closeModal();
     }
 
     function closeModal(){
-        handleClose();
+      handleClose();
+      window.location.reload();
     }
 
   return (
@@ -76,3 +78,4 @@ export default function CancelModal(props) {
   );
 }
 
+export default CancelModal;

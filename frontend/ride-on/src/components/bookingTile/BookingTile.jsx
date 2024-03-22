@@ -5,7 +5,7 @@ import './bookingTile.css'
 import CancelModal from '../cancelModal/CancelModal';
 
 
-const BookingTile = (props) => {
+const BookingTile = (props, {refreshKey, setRefreshKey}) => {
   return (
     <>
         <Container key={props.index} className='booking-container'>

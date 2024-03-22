@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import AuthProvider from './auth/authProvider.js';
 
@@ -25,12 +25,11 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<HomePage/>} />
-          <Route path="/home" element={<HomePage/>} />
+          {/* <Route path="/home" element={<HomePage/>} /> */}
           <Route path="/register" element={<Register />}/>
           <Route path="/login" element={<Login />}/> 
           <Route element={<ProtectedRoute />}>
             <Route path="/Bookings" element={<Bookings />}/> 
-            <Route path="/Profile" element={<Profile />}/>
             <Route path='/MyListings' element={<MyListings />}/>
           </Route>
         </Routes>

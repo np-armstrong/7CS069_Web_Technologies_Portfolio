@@ -18,7 +18,7 @@ function Hero () {
         } else {
             setIsLoggedIn(true);
         }
-    })
+    }, [auth.token])
 
     return (
         <>  
@@ -50,11 +50,10 @@ function Hero () {
                         </div>
                     </Col>
                     <Col xs={12} md={6} lg={5} className='image-column'>
-                        <Image src='../assets/rider-shape-3.png' alt='' className='motocross-image' fluid/>
+                        <Image src='../assets/rider-shape-3.webp' alt='Man riding motorcycle on beach' height="503px" width="495px" fluid/> 
                     </Col>
                 </Row>
             </Container>
-
         </>
     )
 }

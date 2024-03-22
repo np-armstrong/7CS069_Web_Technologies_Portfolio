@@ -31,7 +31,6 @@ export default function EditModal(props) {
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
-    //const username = 'user 2'; //This will be changed to the logged in user's username
     const make = props.make;
     const model = props.model;
     const currentDayRate = props.dayRate;
