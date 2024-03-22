@@ -56,7 +56,7 @@ function EditListing(props, {refreshKey, setRefreshKey}){
       e.preventDefault();
       if(validated){  
         try{
-          const response = await fetch(`api/user_listings/${props.id}`, {
+          const response = await fetch(`http://localhost:8000/api/user_listings/${props.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

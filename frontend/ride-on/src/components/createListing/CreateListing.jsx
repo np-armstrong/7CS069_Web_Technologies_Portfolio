@@ -120,7 +120,7 @@ function CreateListing() {
       // console.log('data validated');
       // console.log(data);
       try{
-        const response = await fetch('/api/user_listings/', {
+        const response = await fetch('http://localhost:8000/api/user_listings/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

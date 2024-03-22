@@ -14,7 +14,7 @@ function CancelListing(props){
 
     async function onDelete(){
       try {
-        const response = await fetch(`/api/user_listings/${props.id}`, {
+        const response = await fetch(`http://localhost:8000/api/user_listings/${props.id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

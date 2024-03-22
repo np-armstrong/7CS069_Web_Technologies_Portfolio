@@ -17,7 +17,7 @@ function Bookings() {
     const fetchBookings = async () => {
 
       try {
-        const response = await fetch(`/api/userbookings/${user}`, {
+        const response = await fetch(`http://localhost:8000/api/userbookings/${user}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

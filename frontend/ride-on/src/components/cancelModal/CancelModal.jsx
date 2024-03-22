@@ -35,12 +35,13 @@ function CancelModal(props) {
 
         if(response.status === 204){
             console.log('Record deleted', data);
+            closeModal();
         }
     }
 
     function handleDelete(){
-      destroy(`/api/bookings/${id}`);
-      closeModal();
+      destroy(`http://localhost:8000/api/bookings/${id}`);
+      
     }
 
     function closeModal(){

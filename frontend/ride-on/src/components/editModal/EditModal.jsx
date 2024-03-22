@@ -145,7 +145,7 @@ export default function EditModal(props) {
     //Handle the save button
     function handleSave() {
         if(validated && validatedEnd){
-        postData(`/api/bookings/${id}`, data)
+        postData(`http://localhost:8000/api/bookings/${id}`, data)
         .then(responseData => {
             console.log('Successfully sent data: ', responseData);
         })

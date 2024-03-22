@@ -48,7 +48,7 @@ function UserListings() {
   useEffect(() => {
     const fetchBikes = async () => {
       try {
-        const response = await fetch('/api/user_listings/'); //Uses the proxy in the package.json file to avoid CORS issues
+        const response = await fetch('http://localhost:8000/api/user_listings/'); //Uses the proxy in the package.json file to avoid CORS issues
         const data = await response.json();
         // console.log(data);
         setBikes(Object.values(data));
