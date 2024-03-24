@@ -9,7 +9,6 @@ function CancelModal(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const[reload, setReload] = useState(false);
     const[token, setToken] = useState(localStorage.getItem('site') || "");
 
     const id = props.bookingId;

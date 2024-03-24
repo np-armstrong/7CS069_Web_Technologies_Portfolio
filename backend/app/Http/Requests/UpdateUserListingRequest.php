@@ -26,7 +26,7 @@ class UpdateUserListingRequest extends FormRequest
             'location' => ['sometimes', 'required', 'string', 'max:255'],
             'make' => ['sometimes', 'required', 'string', 'max:255'],
             'model' => ['sometimes', 'required', 'string', 'max:255'],
-            'engine' => ['sometimes', 'required', 'integer'],
+            'engine' => ['sometimes', 'required', 'integer', 'min:50'],
             'transmission' => ['sometimes', 'required', 'string', 'max:255'],
             'image_url' => ['sometimes', 'required', 'string', 'max:255'],
             'day_rate' => ['sometimes', 'required', 'numeric'],

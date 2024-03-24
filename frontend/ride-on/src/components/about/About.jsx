@@ -16,7 +16,7 @@ function About(){
         <Container fluid className='aboutContainer'> 
             <Row>
                 <Col xs={12} md={6} lg={4}>
-                    <Image src='../assets/se-shape.webp' alt='' className='motocross-image' height="491px" width="524px" fluid/>
+                    <Image rel="preload" fetchpriority="low" src='../assets/se-shape.webp' alt='' className='motocross-image' height="491px" width="524px" fluid/>
                 </Col>
                     
                 <Col xs={12} md={6} lg={6} className='text-column'>

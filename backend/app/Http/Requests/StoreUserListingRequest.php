@@ -26,7 +26,7 @@ class StoreUserListingRequest extends FormRequest
             'location' => ['required', 'string', 'max:255'],
             'make' => ['required', 'string', 'max:255'],
             'model' => ['required', 'string', 'max:255'],
-            'engine' => ['required', 'integer'],
+            'engine' => ['required', 'integer', 'min:50'],
             'transmission' => ['required', 'string', 'max:255'],
             'image_url' => ['required', 'string', 'max:255'],
             'day_rate' => ['required', 'numeric'],

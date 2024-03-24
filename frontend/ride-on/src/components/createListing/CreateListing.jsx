@@ -65,7 +65,7 @@ function CreateListing() {
             model: 'Zoomer-x',
             engine: 110,
             transmission: 'Automatic',
-            image_url: './assets/used-zoomer.jpeg'
+            image_url: './assets/used-zoomer.webp'
           }));
           break;
         case "KTM 390 Duke":
@@ -75,7 +75,7 @@ function CreateListing() {
             model: '390 Duke',
             engine: 390,
             transmission: 'Manual',
-            image_url: './assets/duke2.jpg'
+            image_url: './assets/black-duke2.webp'
           }));
           break;
         case "Honda XR250":
@@ -85,7 +85,7 @@ function CreateListing() {
             model: 'XR250',
             engine: 250,
             transmission: 'Manual',
-            image_url: './assets/xr250.jpeg'
+            image_url: './assets/xr250.webp'
           }));
           break;
         default:
@@ -103,7 +103,7 @@ function CreateListing() {
     engine: 110,
     transmission: 'Automatic',
     day_rate: 0,
-    image_url: 'https://images.khmer24.co/23-06-06/690902-honda-zoomer-x-2020-1686055428-13672738-b.jpg'
+    image_url: './assets/used-zoomer.webp'
   });
 
   useEffect(() => {

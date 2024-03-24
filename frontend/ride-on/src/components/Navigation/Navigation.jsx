@@ -38,7 +38,7 @@ function Navigation(props) {
           <Container fluid>
         <div style={{ marginLeft: '10px' }}>
             <Navbar.Brand href="/">
-                <img src="/assets/rideon.png" alt="" href="/" style={{ cursor: 'pointer', height:"40px", marginRight: "10px"}} />
+                <img rel="preload" src="/assets/rideon.webp" alt="" href="/" style={{ cursor: 'pointer', height:"40px", marginRight: "10px"}} />
             </Navbar.Brand>
         </div>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

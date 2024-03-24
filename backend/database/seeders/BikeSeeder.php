@@ -14,7 +14,7 @@ class BikeSeeder extends Seeder
             'model' => 'Zoomer-X',
             'engine' => '110',
             'transmission' => 'Automatic', 
-            'image_url' => 'https://www.ncxhonda.com/motorcycles/storage/app/uploads/360/zoomer-x/009.jpg',
+            'image_url' => './assets/white-zoomer.webp',
             'day_rate' => 25,
         ],
         [
@@ -22,7 +22,7 @@ class BikeSeeder extends Seeder
             'model' => 'Wave 110 S',
             'engine' => '110',
             'transmission' => 'Semi-Automatic',
-            'image_url' => 'https://yuhmak.vtexassets.com/arquivos/ids/185655-800-auto?v=638406683490070000&width=800&height=auto&aspect=true',
+            'image_url' => './assets/white-wave.webp',
             'day_rate' => 30,
         ],
         [
@@ -30,7 +30,7 @@ class BikeSeeder extends Seeder
             'model' => '390 Duke',
             'engine' => '390',
             'transmission' => 'Manual',
-            'image_url' => 'https://wmr1.com/cdn/shop/files/ktm-390-duke-1.jpg?v=1707410892&width=1080',
+            'image_url' => './assets/black-duke.webp',
             'day_rate' => 85,
         ],
         [
@@ -38,7 +38,7 @@ class BikeSeeder extends Seeder
             'model' => 'CBR1000RR',
             'engine' => '1000',
             'transmission' => 'Manual',
-            'image_url' => 'https://frasermotorcycles.com.au/cdn/shop/products/HONDA_CBR1000RR-R_SP_2022_2_1200x.png?v=1651111375',
+            'image_url' => './assets/black-cbr.webp',
             'day_rate' => 100,
         ],
     ];
