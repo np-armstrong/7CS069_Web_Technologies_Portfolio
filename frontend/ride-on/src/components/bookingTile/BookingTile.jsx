@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Container } from 'react-bootstrap'
 import './bookingTile.css'
 
@@ -6,7 +6,7 @@ import './bookingTile.css'
 const CancelModal = React.lazy(() => import('../cancelModal/CancelModal'));
 const EditModal = React.lazy(() => import('../editModal/EditModal'));
 
-const BookingTile = (props, {refreshKey, setRefreshKey}) => {
+const BookingTile = (props) => {
   return (
     <>
         <Container key={props.index} className='booking-container'>
@@ -20,12 +20,10 @@ const BookingTile = (props, {refreshKey, setRefreshKey}) => {
                     <p>Start Date: {props.startDate}</p>
                     <p>End Date: {props.endDate}</p>
                     <p>Day Rate: £{props.dayRate}</p>
-                    {/* <p>{`Total: $${calculateTotalCost(props.startDate, props.endDate, props.dayRate)}`}</p> */}
-                    {/* <p>Total Cost: $$$</p> */}
                     <p>Total Cost: £{props.total}</p>
                 </div>
-                <div className="booking-controls">                   
-                    {/* This is our new modal allowing us to pass map data to it */}
+                <div className="booking-controls">     
+                  <Suspense fallback={<div>Loading...</div>}>              
                     <EditModal 
                       id={props.id}
                       bike={`${props.make} ${props.model}`}
@@ -34,8 +32,6 @@ const BookingTile = (props, {refreshKey, setRefreshKey}) => {
                       dayRate={props.dayRate}
                       total={props.total}
                     />
-                    {/* TODO: Create Modal to handle deletion */}
-                    {/* <Button variant="outline-danger" onClick={handleCancel}>Cancel</Button> */}
                     <CancelModal 
                       make={props.make}
                       model={props.model}
@@ -45,6 +41,7 @@ const BookingTile = (props, {refreshKey, setRefreshKey}) => {
                       endDate={props.endDate}
                       total={props.total}
                     />
+                  </Suspense>
                 </div>
             </div>    
         </Container>

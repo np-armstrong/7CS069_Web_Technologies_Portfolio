@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import './listingTile.css';
 
@@ -22,7 +22,8 @@ function listingTile(props){
                     <p>Location: {props.location}</p>
                     <p>Day Rate: £{props.dayRate}</p>
                 </div>
-                <div className="listing-controls">                   
+                <div className="listing-controls">    
+                  <Suspense fallback={<div>Loading...</div>}>               
                     <EditListing
                       id={props.id}
                       bike={`${props.make} ${props.model}`}
@@ -34,6 +35,7 @@ function listingTile(props){
                       bike={`${props.make} ${props.model}`}
                       image_url={props.image}
                     />
+                  </Suspense>
                 </div>
             </div>    
         </Container>

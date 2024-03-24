@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import Navigation from '../../components/Navigation/Navigation'
 import { Container } from 'react-bootstrap'
 import './bookings.css'
-import BookingTile from '../../components/bookingTile/BookingTile'
 import Spinner from 'react-bootstrap/Spinner'
+
+
+//Lazy loading the tile 
+const BookingTile = React.lazy(() => import('../../components/bookingTile/BookingTile'));
 
 
 function Bookings() {
 
-  const[bookings, setBookings] = useState([]) //!! This will be used to store the bookings from the backend
-  const[token, setToken] = useState(localStorage.getItem('site') || ""); //!! This will be used to store the token from the backend
-  const[user, setUser] = useState(localStorage.getItem('user') || ""); //!! This will be used to store the user from the backend
+  const[bookings, setBookings] = useState([]) 
+  const[token, setToken] = useState(localStorage.getItem('site') || ""); 
+  const[user, setUser] = useState(localStorage.getItem('user') || ""); 
   
-  // GET User Bookings from the backend
   useEffect(() => {
     const fetchBookings = async () => {
 
@@ -38,7 +40,7 @@ function Bookings() {
   
   return (
     <>
-      <Navigation isBookings={true}/> {/* changes the navbar option based on page */}
+      <Navigation isBookings={true}/>
       <Container>
         <div className="header">        
           <h1>My Bookings</h1>
@@ -47,17 +49,19 @@ function Bookings() {
         {bookings && Object.keys(bookings).length > 0 ? <div className='booking-map'> 
           {bookings != null ? bookings.map((booking, index) => {
             return (
-              <BookingTile
-                key={index}
-                id={booking.id}
-                make={booking.make}
-                model={booking.model}
-                startDate={booking.start_date}
-                endDate={booking.end_date}
-                image={booking.image_url}
-                dayRate={booking.day_rate}
-                total={booking.total}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <BookingTile
+                  key={index}
+                  id={booking.id}
+                  make={booking.make}
+                  model={booking.model}
+                  startDate={booking.start_date}
+                  endDate={booking.end_date}
+                  image={booking.image_url}
+                  dayRate={booking.day_rate}
+                  total={booking.total}
+                />
+              </Suspense>
             )
           }) : 
           <div className='spinner-container'>

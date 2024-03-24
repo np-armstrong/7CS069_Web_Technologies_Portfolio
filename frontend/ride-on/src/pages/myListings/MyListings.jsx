@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import Navigation from '../../components/Navigation/Navigation'
-import { Col, Container, Row, Button } from 'react-bootstrap'
-import Carousel from 'react-bootstrap/Carousel'
+import { Container, Row } from 'react-bootstrap'
 import './myListings.css'
-import BikeCard from '../../components/bikeCard/BikeCard'
-import ListingTile from '../../components/listingTile/ListingTile.jsx'
-import CreateListing from '../../components/createListing/CreateListing.jsx'
+
+
+//Lazy Loading of components. (One may not be visible if the user has no listings and the other is a modal)
+const CreateListing = React.lazy(() => import('../../components/createListing/CreateListing'));
+const ListingTile = React.lazy(() => import('../../components/listingTile/ListingTile'));
+
 
 function MyListings() {
 
@@ -27,7 +29,6 @@ function MyListings() {
                 setListings(Object.values(data));
             } catch (error) {
                 console.error('Error fetching listings:', error);
-                //alert('Error fetching listings', error);
             }
         };
         fetchListings();
@@ -52,14 +53,16 @@ function MyListings() {
                 <div className="edit-my-listings">
                     {listings.length !== 0 ? listings.map((bike, index) => {
                         return(
-                            <ListingTile key={index}
-                                id={bike.id}
-                                location={bike.location}
-                                make={bike.make}
-                                model={bike.model}    
-                                dayRate={bike.day_rate}
-                                image={bike.image_url}
-                            />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ListingTile key={index}
+                                    id={bike.id}
+                                    location={bike.location}
+                                    make={bike.make}
+                                    model={bike.model}    
+                                    dayRate={bike.day_rate}
+                                    image={bike.image_url}
+                                />
+                            </Suspense>
                         )
                     }): 
                         <div className='no-listings'>
