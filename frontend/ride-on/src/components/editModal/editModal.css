@@ -1,0 +1,12 @@
+.booking-confirmation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.confirmed-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

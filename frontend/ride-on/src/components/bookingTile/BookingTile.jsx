@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Button } from 'react-bootstrap'
-import EditModal from '../editModal/EditModal'
+import { Container } from 'react-bootstrap'
 import './bookingTile.css'
-import CancelModal from '../cancelModal/CancelModal';
 
+//lazy loading of the modals
+const CancelModal = React.lazy(() => import('../cancelModal/CancelModal'));
+const EditModal = React.lazy(() => import('../editModal/EditModal'));
 
 const BookingTile = (props, {refreshKey, setRefreshKey}) => {
   return (

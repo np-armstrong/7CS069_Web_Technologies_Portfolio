@@ -104,7 +104,13 @@ function Navigation(props) {
                   List My Bike
                 </Button> :
                 isLoggedIn && isListings ?
-                 null
+                <Button  
+                as={Link} 
+                to= "/"  // This needs to be configured when listings option available
+                variant="outline-dark" 
+                style={{ marginRight: '10px', marginBottom: "5px"}}>
+                Home
+              </Button>
                 : 
                 <Button 
                   as={Link} 

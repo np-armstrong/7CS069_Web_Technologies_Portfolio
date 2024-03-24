@@ -4,43 +4,6 @@ import './userListings.css';
 import { useState, useEffect } from 'react';
 import Spinner from "react-bootstrap/Spinner";
 
-// Fake listings for use while building the UI
-// const bikes = [
-//     {
-//         id: 1,
-//         username: "Dave86",
-//         location: "Wolverhampton",
-//         make: "Honda",
-//         model: "XR250",
-//         engine: 250,
-//         transmission: "Manual",
-//         image_url: "./assets/xr250.jpeg", 
-//         day_rate: 100,
-//     },
-//     {
-//         id: 2,
-//         username: "PhilBiker24",
-//         location: "Manchester",
-//         make: "Yamaha",
-//         model: "YZ250",
-//         engine: 250,
-//         transmission: "Manual",
-//         image_url: "./assets/yz250.jpeg",
-//         day_rate: 120,
-//     },
-//     {
-//         id: 3,
-//         username: "DanTheMan",
-//         location: "Nottingham",
-//         make: "Kawasaki",
-//         model: "KX250",
-//         engine: 250,
-//         transmission: "Manual",
-//         image_url: "./assets/kx250.png",
-//         day_rate: 150,
-//     }
-// ];
-
 function UserListings() {
 
   const [bikes, setBikes] = useState([]);

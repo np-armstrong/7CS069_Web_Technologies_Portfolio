@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './bikeCard.css'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import CardImg from 'react-bootstrap/CardImg';
-import { CurrencyDollar } from 'react-bootstrap-icons';
-import { Router } from 'react-router-dom';
-import CreateModal from '../createModal/CreateModal';
+
+//lazy loading of the modal
+const CreateModal = React.lazy(() => import('../createModal/CreateModal'));
 
 function BikeCard(props) {
 
@@ -16,12 +14,6 @@ function BikeCard(props) {
   const dayRate = props.dayRate;
   const image = props.url;
   const userBike = props.userBike;
-  // const key = props.key;
-
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   console.log('The link was clicked.');
-  // }
   
     return (
       <div className='bike-card'>
@@ -47,16 +39,17 @@ function BikeCard(props) {
                   <img src="./assets/icons/dollar.png"/>
                   <li className='bike-stat'>{`£${props.dayRate}/day`}</li>
               </div>
-            </div>          
-            {/* <Button variant="dark" onClick={handleClick}>Hire</Button> */}
-            <CreateModal
-              make={make}
-              model={model}
-              engine={engine}
-              transmission={transmission}
-              dayRate={dayRate}
-              image={image}
-            />          
+            </div>
+            <Suspense fallback={<div>Loading...</div>}>         
+              <CreateModal
+                make={make}
+                model={model}
+                engine={engine}
+                transmission={transmission}
+                dayRate={dayRate}
+                image={image}
+              />          
+            </Suspense>
           </Card.Body>
         </Card>
       </div>

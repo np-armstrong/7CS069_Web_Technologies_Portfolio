@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Form, Col, Row, Image } from 'react-bootstrap'; 
 import { useAuth } from '../../auth/authProvider.js';
 import './createListing.css';
+import '../createModal/createModal.css';
 
 function CreateListing() {
 

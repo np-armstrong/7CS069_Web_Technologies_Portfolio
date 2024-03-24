@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Row, Col, Form, Container } from 'react-bootstrap';
 //import './createModal.css';
+import './editModal.css';
 
 const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
