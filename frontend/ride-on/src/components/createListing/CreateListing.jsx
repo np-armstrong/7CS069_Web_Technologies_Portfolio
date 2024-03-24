@@ -2,7 +2,7 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from 'react';
-import { Form, Col, Row, Image } from 'react-bootstrap'; 
+import { Form, Image } from 'react-bootstrap'; 
 import { useAuth } from '../../auth/authProvider.js';
 import './createListing.css';
 import '../createModal/createModal.css';
@@ -116,10 +116,7 @@ function CreateListing() {
   });
 
   async function handleSubmit(){
-    //checkValidation();
     if (validated){
-      // console.log('data validated');
-      // console.log(data);
       try{
         const response = await fetch('http://localhost:8000/api/user_listings/', {
           method: 'POST',
@@ -133,7 +130,6 @@ function CreateListing() {
         if (response.ok){
           console.log('Listing created');
           setSaved(true);
-          // alert('Listing created');
         }
         return response;
       } catch (error){
@@ -173,7 +169,6 @@ function CreateListing() {
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Location Required</Form.Control.Feedback>
-                {/* TODO: Add validation */}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Select your bike</Form.Label>
@@ -195,8 +190,6 @@ function CreateListing() {
                 />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 <Form.Control.Feedback type="invalid">Day Rate Required.</Form.Control.Feedback>
-
-                {/* TODO: Add validation */}
               </Form.Group>
             </Form>
 

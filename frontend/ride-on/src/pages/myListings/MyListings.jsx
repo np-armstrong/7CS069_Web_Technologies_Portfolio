@@ -36,7 +36,6 @@ function MyListings() {
 
     return (
         <>
-            {/* TODO: Add a prop to navigation to remove the list my bike from this page */}
             <Navigation 
                 isListings={true}
             /> 

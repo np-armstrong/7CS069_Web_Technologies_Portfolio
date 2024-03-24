@@ -1,7 +1,4 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-// import TestRenderer from 'react-test-renderer';
-// import { ShallowRenderer } from 'react-test-renderer/shallow';
 import { render, screen, cleanup, fireEvent, getByTestId } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import CreateModal from '../CreateModal.jsx';

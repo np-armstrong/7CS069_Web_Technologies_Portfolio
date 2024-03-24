@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Row, Col, Form, Container } from 'react-bootstrap';
-//import './createModal.css';
+import { Col, Form } from 'react-bootstrap';
 import './editModal.css';
 
 const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
@@ -20,15 +19,12 @@ export default function EditModal(props) {
     }
     const handleShow = () => setShow(true);
 
-    //Validation 
+    
     const[validated, setValidated] = useState(true);
     const[validatedEnd, setValidatedEnd] = useState(true);
-    //Dates
     const[newStartDate, setNewStartDate] = useState(props.startDate);
     const[newEndDate, setNewEndDate] = useState(props.endDate);
-    //Cost
     const[totalCost, setTotalCost] = useState(props.total);
-    //Saved
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
@@ -90,12 +86,8 @@ export default function EditModal(props) {
         total: totalCost
     }); 
 
-    
-    //!! Need to find the Total function and add it here !!
-    //Function to calculate the total cost of the booking -- This appears to work fine, test with jest!
     function calculateTotalCost(startDate, endDate, currentDayRate){
 
-        //Convert the dates to a date object
         const date1 = new Date(startDate).getDate(); 
         const date2 = new Date(endDate).getDate();
             
@@ -182,7 +174,6 @@ export default function EditModal(props) {
 
             <div className="date-container">
 
-                {/* This is the Start date field */}
                 <Form noValidate validated={validated}>
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>Start Date</Form.Label>
@@ -199,7 +190,6 @@ export default function EditModal(props) {
                     </Form.Group>
                 </Form>
 
-                {/* This is the end date field */}
                 <Form noValidate validated={validatedEnd}>
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>End Date</Form.Label>

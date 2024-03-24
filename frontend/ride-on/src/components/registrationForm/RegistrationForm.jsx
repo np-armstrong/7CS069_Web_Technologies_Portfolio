@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import './registrationForm.css'; // Add correct import statement for CSS file
+import './registrationForm.css'; 
 import { useNavigate } from 'react-router-dom'; 
 
 const RegistrationForm = () => {
@@ -23,18 +23,17 @@ const RegistrationForm = () => {
     };
 
     function validateEmail(email) {
-        const regex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/; //SRC: https://saturncloud.io/blog/how-can-i-validate-an-email-address-using-a-regular-expression/#:~:text=In%20the%20context%20of%20email,and%20efficiently%20validate%20user%20input. 
+        const regex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;                           
         return regex.test(email);
     }
 
     function validatePassword(password) {
-        // This regex adds a layer of security to the password by requiring at least one uppercase letter, one lowercase letter, one number, and one special character. It also requires the password to be between 8 and 15 characters long.
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/; //SRC https://www.geeksforgeeks.org/javascript-program-to-validate-password-using-regular-expressions/
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/; 
         return regex.test(password); 
     }
 
     function validateUsername(username) {
-        const regex = /^[a-zA-Z0-9]{2,}$/; // requires at least 2 characters, can be letters or numbers
+        const regex = /^[a-zA-Z0-9]{2,}$/; 
         return regex.test(username);
     }
 
@@ -52,17 +51,13 @@ const RegistrationForm = () => {
             return;
         }
         if(validatePassword(formData.password) === false) {
-            alert('Invalid password');
+            alert('Password must be between 8 and 15 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
             return;
         }
         if(validateUsername(formData.username) === false) {
             alert('Invalid username');
             return;
         }
-
-        console.log(formData);
-        // TODO: This applies to all api requests, the bad response code and message is not being handled correctly. 
-        // Possible options: Research further implementation of fetch API, or use axios.
 
         try {
             const response = await fetch('http://localhost:8000/api/register', {
@@ -72,16 +67,6 @@ const RegistrationForm = () => {
                 },
                 body: JSON.stringify(formData),
             });
-            //!! TODO !!//
-            //Add check for bad response code for error handling -- check the loginAction function in authProvider.js for reference
-
-            // if (!response.ok) {
-            //     // const errorData = await response.json();
-
-            //     // console.error('Error:' , errorData.message);
-
-            //     throw new Error(`API request failed with status ${response.status}`);
-            // }
 
             const responseData = await response.json();
             console.log(responseData);
@@ -130,7 +115,6 @@ const RegistrationForm = () => {
                         
                     />
                     <Form.Text className="text-muted">
-                    {/* We'll never share your email with anyone else. */}
                     </Form.Text>
                 </Form.Group>
 

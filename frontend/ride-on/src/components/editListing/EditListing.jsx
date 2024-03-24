@@ -21,13 +21,11 @@ function EditListing(props, {refreshKey, setRefreshKey}){
     const handleClose = () => {
       setShow(false);
       setSaved(false);
-      //setRefreshKey(refreshKey + 1);
       window.location.reload();
     };
 
     const handleShow = () => {
       setShow(true)
-      //console.log(refreshKey)
     };
     
     const[data, setData] = useState({

@@ -16,7 +16,7 @@ class UserAuthController extends Controller
         $fields = $request->validate([
             'username' => 'required|string|unique:users,username',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:8'
         ]);
         // Create the user
         $user = User::create([
@@ -37,16 +37,15 @@ class UserAuthController extends Controller
             'password' => 'required|string'
         ]);
 
-        // Check username OR email (I wanted to adde the ability to sign in with username or email. It frustrates me when I forget a username...)
+        // Check email 
         $user = User::where('email', $fields['email'])->first();
-        //->orWhere('username', $fields['username'])->first(); //This caused errors so removed it for now...
-
+    
         // Check password
-        if (!$user || !Hash::check($fields['password'], $user->password)) { //Hash::check is used to check the hashed password https://laravel.com/docs/5.0/hashing
+        if (!$user || !Hash::check($fields['password'], $user->password)) 
             return response([
                 'message' => 'username or password is incorrect. Please try again.'
-            ], 401); //401 is the status code for unauthorized access
-        }
+            ], 401); 
+    
 
         $token = $user->createToken($user->username.'personalapptoken')->plainTextToken; 
 
@@ -59,8 +58,6 @@ class UserAuthController extends Controller
 
     public function logout () {
 
-        // Revoke all tokens...
-        //$request->
         auth()->user()->tokens()->delete(); //this is throwing an error but allowing it to exist allows the user to log out... I'm not sure why it's throwing an error...
 
         return response()->json([

@@ -54,8 +54,6 @@ function Navigation(props) {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  {/* <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link> */}
                   {isLoggedIn ? (
                     <NavDropdown
                       style={{ marginBottom: '5px' }}
@@ -94,11 +92,10 @@ function Navigation(props) {
                     </NavDropdown>
                   )}
                 </Nav>
-                {/* New button for listing bikes */}
                 {isLoggedIn && !isListings ? 
                 <Button  
                   as={Link} 
-                  to= "/mylistings"  // This needs to be configured when listings option available
+                  to= "/mylistings"  
                   variant="dark" 
                   style={{ marginRight: '10px', marginBottom: "5px"}}>
                   List My Bike
@@ -106,7 +103,7 @@ function Navigation(props) {
                 isLoggedIn && isListings ?
                 <Button  
                 as={Link} 
-                to= "/"  // This needs to be configured when listings option available
+                to= "/"  
                 variant="outline-dark" 
                 style={{ marginRight: '10px', marginBottom: "5px"}}>
                 Home

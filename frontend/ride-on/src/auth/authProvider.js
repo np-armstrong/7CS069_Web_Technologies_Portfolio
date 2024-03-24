@@ -30,13 +30,11 @@ export default function AuthProvider({ children }) {
             }
             throw new Error(responseData.message);
         } catch (error) {
-            //console.error('Error:', error);
             alert(error)
         }
 
     }
 
-    //!! TODO !!//
     async function logoutAction() {
 
         try {
@@ -50,7 +48,6 @@ export default function AuthProvider({ children }) {
             });
             const responseData = await response.json();
             if(response.status !== 401 && response.status !== 500) {
-                // console.log(responseData); 
                 setUser(null);
                 setToken("");
                 localStorage.removeItem('site');
@@ -62,15 +59,6 @@ export default function AuthProvider({ children }) {
         } catch (error) {
             alert(error)
         }
-        //TODO: Send post request to logout - pass token from local storage to API
-
-
-        // Original
-        // setUser(null);
-        // setToken("");
-        // localStorage.removeItem('site');
-        // localStorage.removeItem('user');
-        // navigate('/login');
     }
 
     return (
@@ -84,5 +72,3 @@ export default function AuthProvider({ children }) {
 export function useAuth() {
   return useContext(AuthContext);
 }
-
-//src: https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5

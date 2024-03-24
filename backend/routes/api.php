@@ -39,4 +39,3 @@ Route::get('userlistings/{search}', [UserListingController::class, 'userlistings
 Route::apiResource('bikes', BikesController::class)->only([
     'index'
 ]);
-

@@ -4,9 +4,6 @@ import BikeCard from '../bikeCard/BikeCard';
 import './fleet.css';
 import Spinner from 'react-bootstrap/Spinner';
 
-//FIRST TODO: Turn the below into a map that will iterate through the bikes in the database and display them
-//TODO: Create a modal that allows user to book a bike
-
 const Fleet = () => {
 
   //State variable to hold the bikes
@@ -21,7 +18,6 @@ const Fleet = () => {
         setBikes(Object.values(data));
       } catch (error) {
         console.error('Error fetching bikes:', error);
-        // Handle errors (e.g., display an error message)
         alert('Error fetching bikes', error);
       }
     };

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Row, Col, Form, Container } from 'react-bootstrap';
+import { Col, Form} from 'react-bootstrap';
 import './createModal.css';
 import { useAuth } from '../../auth/authProvider';
-import { redirect } from 'react-router-dom'; 
 
+//Gets the current date to ensure bookings aren't made in the past. 
 const todaysDate = new Date(Date.now()).toISOString().slice(0,10);
 
 function CreateModal(props) {
@@ -20,9 +20,6 @@ function CreateModal(props) {
         setSaved(false);
     }
 
-    //Original
-    //const handleShow = () => setShow(true);
-    // Now with checking for logged in user
     function handleShow() {
         if (auth.token === "") {
             window.location.href = "/register";
@@ -31,16 +28,12 @@ function CreateModal(props) {
         }
     }
 
-
-    //Validation 
+    //State variables
     const[validated, setValidated] = useState();
     const[validatedEnd, setValidatedEnd] = useState();
-    //Dates
     const[newStartDate, setNewStartDate] = useState();
     const[newEndDate, setNewEndDate] = useState();
-    //Cost
     const[totalCost, setTotalCost] = useState(0);
-    //Saved
     const[saved, setSaved] = useState(false);
 
     //Variables to hold data for POST request
@@ -97,11 +90,9 @@ function CreateModal(props) {
         total: totalCost
     }); 
     
-    //!! Need to find the Total function and add it here !!
     //Function to calculate the total cost of the booking -- This appears to work fine, test with jest!
     function calculateTotalCost(startDate, endDate, dayRate){
 
-            //Convert the dates to a date object
         const date1 = new Date(startDate).getDate(); 
         const date2 = new Date(endDate).getDate();
             
@@ -138,7 +129,7 @@ function CreateModal(props) {
           }
       
           const responseJson = await response.json();
-          return responseJson; // Returns the new booking object
+          return responseJson; 
           
         } catch (error) {
           console.error('Error:', error);
@@ -165,7 +156,6 @@ function CreateModal(props) {
         }
     }
 
-    //TODO: Check if user is logged in before displaying the modal
     const auth = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -214,7 +204,6 @@ function CreateModal(props) {
 
             <div className="date-container">
 
-                {/* This is the Start date field */}
                 <Form noValidate validated={validated}>
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>Start Date</Form.Label>
@@ -227,12 +216,11 @@ function CreateModal(props) {
                             isInvalid={validated === false}
                             isValid={validated === true}
                         />
-                        <Form.Control.Feedback type='invalid'>Date cannot be in the past!</Form.Control.Feedback> {/* Displays error message for invalid input */}
-                        <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback> {/* Displays valid message for invalid input */}
+                        <Form.Control.Feedback type='invalid'>Date cannot be in the past!</Form.Control.Feedback> 
+                        <Form.Control.Feedback type='valid'>Looks good!</Form.Control.Feedback> 
                     </Form.Group>
                 </Form>
 
-                {/* This is the end date field */}
                 <Form noValidate validated={validatedEnd}>
                     <Form.Group as={Col} md="4" controlId="validationCustom01">
                         <Form.Label>End Date</Form.Label>
