@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Navigation from '../../components/Navigation/Navigation';
 import Hero from '../../components/hero/Hero';
 import Features from '../../components/features/Features';
-import Fleet from '../../components/fleet/Fleet';
-import Footer from '../../components/footer/Footer';
-import About from '../../components/about/About';
-import UserListings from '../../components/userListings/UserListings';
-import { useEffect, useState } from 'react'
 
+//Lazy loading components
+const Fleet = React.lazy(() => import('../../components/fleet/Fleet'));
+const Footer = React.lazy(() => import('../../components/footer/Footer'));
+const About = React.lazy(() => import('../../components/about/About'));
+const UserListings = React.lazy(() => import('../../components/userListings/UserListings'));
 
 const HomePage = () => {
 
@@ -16,10 +16,12 @@ const HomePage = () => {
         <Navigation isBookings={false}/>
         <Hero/> 
         <Features />
-        <Fleet />
-        <About />
-        <UserListings/>
-        <Footer />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Fleet />
+            <About />
+            <UserListings/>
+            <Footer />
+          </Suspense>
     </>
   )
 }
