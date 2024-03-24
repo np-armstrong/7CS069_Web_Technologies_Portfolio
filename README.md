@@ -47,11 +47,33 @@ To create the DB. Ensure you have MySQL installed. To create the DB for this pro
 
 1. Navigate to the frontend directory: ```cd frontend``` -> ```cd ride-on```
 
-2. Install serve (https://www.npmjs.com/package/serve): 
+2. Run: ```npm run build```
+
+3. Install serve (https://www.npmjs.com/package/serve): 
  ```npm install -g serve```
 
-3. Run the build version with serve: 
+4. Run the build version with serve: 
 ```serve -s build``` 
+
+## Dependencies
+
+"@testing-library/jest-dom": "^5.17.0",
+"@testing-library/react": "^13.4.0",
+"@testing-library/user-event": "^13.5.0",
+"bootstrap": "^5.3.2",
+"jest": "^27.5.1",
+"react": "^18.2.0",
+"react-bootstrap": "^2.10.1",
+"react-bootstrap-icons": "^1.11.3",
+"react-dom": "^18.2.0",
+"react-router-dom": "^6.22.1",
+"react-scripts": "5.0.1",
+"web-vitals": "^2.1.4"
+"php": "^8.1",
+"guzzlehttp/guzzle": "^7.2",
+"laravel/framework": "^10.10",
+"laravel/sanctum": "^3.3",
+"laravel/tinker": "^2.8"
 
 ## Acknowledgements
 
